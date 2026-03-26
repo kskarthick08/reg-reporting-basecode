@@ -1,0 +1,301 @@
+{
+  "report_code": "PSD008",
+  "report_name": "Product Sales Data - Credit Agreement Sales",
+  "version": "prototype-1.0",
+  "target_namespace": "urn:fsa-gov-uk:MER:PSD008:1",
+  "root_element": "PSD008-CreditAgreementSales",
+  "record_element": "PSD008FeedMsg",
+  "summary": "Functional specification snapshot for the PSD008 prototype pack. Rows align the prototype source data to the target XML output structure and expected value transforms.",
+  "rows": [
+    {
+      "ref": "PSD008-H01",
+      "business_field": "Submitting firm reference number",
+      "source_column": "submitter_firm",
+      "xml_path": "/PSD008-CreditAgreementSales/PSDFeedHeader/Submitter/SubmittingFirm",
+      "xsd_type": "FRNType",
+      "required": true,
+      "transform_rule": "Pass through as 6-7 digit numeric string",
+      "sample_value": "123456"
+    },
+    {
+      "ref": "PSD008-H02",
+      "business_field": "Report creation date",
+      "source_column": "report_creation_date",
+      "xml_path": "/PSD008-CreditAgreementSales/PSDFeedHeader/ReportDetails/ReportCreationDate",
+      "xsd_type": "xs:date",
+      "required": true,
+      "transform_rule": "ISO date YYYY-MM-DD",
+      "sample_value": "2025-03-10"
+    },
+    {
+      "ref": "PSD008-H03",
+      "business_field": "Report identifier",
+      "source_column": "report_identifier",
+      "xml_path": "/PSD008-CreditAgreementSales/PSDFeedHeader/ReportDetails/ReportIdentifier",
+      "xsd_type": "String100Type",
+      "required": true,
+      "transform_rule": "Pass through, max length 100",
+      "sample_value": "PSD008-Q1-2025"
+    },
+    {
+      "ref": "PSD008-001",
+      "business_field": "Transaction reference",
+      "source_column": "transaction_reference",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CoreDetails/TransRef",
+      "xsd_type": "String25Type",
+      "required": true,
+      "transform_rule": "Pass through, unique per feed",
+      "sample_value": "TRX-PSD008-0001"
+    },
+    {
+      "ref": "PSD008-002",
+      "business_field": "Cancellation indicator",
+      "source_column": "cancellation",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CoreDetails/Cancellation",
+      "xsd_type": "xs:boolean",
+      "required": false,
+      "transform_rule": "Boolean lexical value true/false",
+      "sample_value": "false"
+    },
+    {
+      "ref": "PSD008-003",
+      "business_field": "Origination type",
+      "source_column": "origination_type",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/OriginationType",
+      "xsd_type": "enum[A,B,C,X]",
+      "required": true,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "C"
+    },
+    {
+      "ref": "PSD008-004",
+      "business_field": "Earlier agreement transaction reference status",
+      "source_column": "earlier_agreement_trans_ref_status",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/EarlierAgreementTransRefStatus",
+      "xsd_type": "enum[A,B,Z]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "A"
+    },
+    {
+      "ref": "PSD008-005",
+      "business_field": "Earlier agreement transaction reference",
+      "source_column": "earlier_agreement_trans_ref",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/EarlierAgreementTransRef",
+      "xsd_type": "String25Type",
+      "required": false,
+      "transform_rule": "Pass through, max length 25",
+      "sample_value": "TRX-PSD008-0000"
+    },
+    {
+      "ref": "PSD008-006",
+      "business_field": "Previous lender regulatory status",
+      "source_column": "previous_lender_regulatory_status",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/PreviousLenderRegulatoryStatus",
+      "xsd_type": "enum[A1,A2,X,Z1,Z2]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "A1"
+    },
+    {
+      "ref": "PSD008-007",
+      "business_field": "Previous lender FRN",
+      "source_column": "previous_lender_frn",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/PreviousLenderFRN",
+      "xsd_type": "FRNType",
+      "required": false,
+      "transform_rule": "Pass through as 6-7 digit numeric string",
+      "sample_value": "123456"
+    },
+    {
+      "ref": "PSD008-008",
+      "business_field": "Previous lender name",
+      "source_column": "previous_lender_name",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/PreviousLenderName",
+      "xsd_type": "String100Type",
+      "required": false,
+      "transform_rule": "Pass through, max length 100",
+      "sample_value": "Northgate Lending Limited"
+    },
+    {
+      "ref": "PSD008-009",
+      "business_field": "Date legal ownership assigned",
+      "source_column": "date_legal_ownership_assigned",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/DateLegalOwnershipAssigned",
+      "xsd_type": "xs:date",
+      "required": false,
+      "transform_rule": "ISO date YYYY-MM-DD",
+      "sample_value": "2025-01-01"
+    },
+    {
+      "ref": "PSD008-010",
+      "business_field": "Use type",
+      "source_column": "use_type",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/UseType",
+      "xsd_type": "enum[B,P,Z]",
+      "required": true,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "P"
+    },
+    {
+      "ref": "PSD008-011",
+      "business_field": "Default notice indicator",
+      "source_column": "default_notice",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/DefaultNotice",
+      "xsd_type": "YesNoType",
+      "required": false,
+      "transform_rule": "Normalize to Y or N",
+      "sample_value": "N"
+    },
+    {
+      "ref": "PSD008-012",
+      "business_field": "Brand name used",
+      "source_column": "was_brand_name_used",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/SalesDetails/WasBrandNameUsed",
+      "xsd_type": "enum[Y,N,Z]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "Y"
+    },
+    {
+      "ref": "PSD008-013",
+      "business_field": "Brand name",
+      "source_column": "brand_name",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/SalesDetails/BrandName",
+      "xsd_type": "String100Type",
+      "required": false,
+      "transform_rule": "Pass through when present",
+      "sample_value": "Northgate Flex"
+    },
+    {
+      "ref": "PSD008-014",
+      "business_field": "P2P agreement indicator",
+      "source_column": "p2p_agreement",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/P2PDetails/P2PAgreement",
+      "xsd_type": "enum[A1,A2,B,C,N,Z]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "B"
+    },
+    {
+      "ref": "PSD008-015",
+      "business_field": "Agreement execution date",
+      "source_column": "agreement_execution_date",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementDuration/AgreementExecutionDate",
+      "xsd_type": "xs:date",
+      "required": false,
+      "transform_rule": "ISO date YYYY-MM-DD",
+      "sample_value": "2025-02-15"
+    },
+    {
+      "ref": "PSD008-016",
+      "business_field": "Open end agreement indicator",
+      "source_column": "open_end_agreement",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementDuration/OpenEndAgreement",
+      "xsd_type": "YesNoType",
+      "required": false,
+      "transform_rule": "Normalize to Y or N",
+      "sample_value": "N"
+    },
+    {
+      "ref": "PSD008-017",
+      "business_field": "Agreement end date",
+      "source_column": "agreement_end_date",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementDuration/AgreementEndDate",
+      "xsd_type": "xs:date",
+      "required": false,
+      "transform_rule": "ISO date YYYY-MM-DD when agreement is not open-ended",
+      "sample_value": "2029-02-14"
+    },
+    {
+      "ref": "PSD008-018",
+      "business_field": "Credit type",
+      "source_column": "credit_type",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementCharacteristics/CreditType",
+      "xsd_type": "enum[FS,RA]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "FS"
+    },
+    {
+      "ref": "PSD008-019",
+      "business_field": "Lending type",
+      "source_column": "lending_type",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementCharacteristics/FixedSumDetails/LendingType",
+      "xsd_type": "enum[A,B]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "A"
+    },
+    {
+      "ref": "PSD008-020",
+      "business_field": "Contract type",
+      "source_column": "contract_type",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementCharacteristics/FixedSumDetails/ContractType",
+      "xsd_type": "enum[A,B,C,D,E,X,Z]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "A"
+    },
+    {
+      "ref": "PSD008-021",
+      "business_field": "Number of borrowers",
+      "source_column": "number_of_borrowers",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/BorrowerDetails/NumberOfBorrowers",
+      "xsd_type": "NonNegativeIntegerType",
+      "required": false,
+      "transform_rule": "Numeric integer >= 0",
+      "sample_value": "2"
+    },
+    {
+      "ref": "PSD008-022",
+      "business_field": "Borrower party details",
+      "source_column": "borrowers_json",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/BorrowerDetails/Borrower[*]",
+      "xsd_type": "complexType",
+      "required": false,
+      "transform_rule": "Explode JSON array into repeating Borrower nodes with BorrowerRef and BorrowerDOB",
+      "sample_value": "[{\"borrower_ref\":\"BRW-1001-A\",\"borrower_dob\":\"1986-04-13\"}]"
+    },
+    {
+      "ref": "PSD008-023",
+      "business_field": "Security type",
+      "source_column": "security_type",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/SecurityDetails/SecurityType",
+      "xsd_type": "enum[A,B,C,D,E,F,W,X,Z]",
+      "required": false,
+      "transform_rule": "Must match PSD008 code list exactly",
+      "sample_value": "E"
+    },
+    {
+      "ref": "PSD008-024",
+      "business_field": "Total amount of credit",
+      "source_column": "total_amount_of_credit",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/TotalAmountCredit/TotalAmountOfCredit",
+      "xsd_type": "NonNegativeMonetaryFloat2Type",
+      "required": false,
+      "transform_rule": "Decimal with 2 fraction digits",
+      "sample_value": "12500.00"
+    },
+    {
+      "ref": "PSD008-025",
+      "business_field": "APR",
+      "source_column": "apr",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/TotalChargeCredit/APR",
+      "xsd_type": "PercentDP2Type",
+      "required": false,
+      "transform_rule": "Decimal with 2 fraction digits",
+      "sample_value": "9.80"
+    },
+    {
+      "ref": "PSD008-026",
+      "business_field": "Total charge for credit",
+      "source_column": "total_charge_for_credit",
+      "xml_path": "/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/TotalChargeCredit/TotalChargeForCredit",
+      "xsd_type": "NonNegativeMonetaryFloat2Type",
+      "required": false,
+      "transform_rule": "Decimal with 2 fraction digits",
+      "sample_value": "1845.25"
+    }
+  ]
+}

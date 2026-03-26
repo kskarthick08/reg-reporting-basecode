@@ -1,0 +1,218 @@
+{
+  "report_code": "PSD008",
+  "report_name": "Product Sales Data - Credit Agreement Sales",
+  "version": "prototype-1.0",
+  "namespace": "urn:fsa-gov-uk:MER:PSD008:1",
+  "root_element": "PSD008-CreditAgreementSales",
+  "record_element": "PSD008FeedMsg",
+  "header_mappings": [
+    {
+      "source_column": "submitter_firm",
+      "target_xpath": "/PSD008-CreditAgreementSales/PSDFeedHeader/Submitter/SubmittingFirm",
+      "type": "frn",
+      "required": true
+    },
+    {
+      "source_column": "report_creation_date",
+      "target_xpath": "/PSD008-CreditAgreementSales/PSDFeedHeader/ReportDetails/ReportCreationDate",
+      "type": "date",
+      "required": true
+    },
+    {
+      "source_column": "report_identifier",
+      "target_xpath": "/PSD008-CreditAgreementSales/PSDFeedHeader/ReportDetails/ReportIdentifier",
+      "type": "string",
+      "required": true
+    }
+  ],
+  "record_mappings": [
+    {
+      "source_column": "transaction_reference",
+      "target_xpath": "CoreDetails/TransRef",
+      "type": "string25",
+      "required": true
+    },
+    {
+      "source_column": "cancellation",
+      "target_xpath": "CoreDetails/Cancellation",
+      "type": "boolean",
+      "required": false
+    },
+    {
+      "source_column": "origination_type",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/OriginationType",
+      "type": "enum",
+      "allowed_values": ["A", "B", "C", "X"],
+      "required": true
+    },
+    {
+      "source_column": "earlier_agreement_trans_ref_status",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/EarlierAgreementTransRefStatus",
+      "type": "enum",
+      "allowed_values": ["A", "B", "Z"],
+      "required": false
+    },
+    {
+      "source_column": "earlier_agreement_trans_ref",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/EarlierAgreementTransRef",
+      "type": "string25",
+      "required": false
+    },
+    {
+      "source_column": "previous_lender_regulatory_status",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/PreviousLenderRegulatoryStatus",
+      "type": "enum",
+      "allowed_values": ["A1", "A2", "X", "Z1", "Z2"],
+      "required": false
+    },
+    {
+      "source_column": "previous_lender_frn",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/PreviousLenderFRN",
+      "type": "frn",
+      "required": false
+    },
+    {
+      "source_column": "previous_lender_name",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/PreviousLenderName",
+      "type": "string100",
+      "required": false
+    },
+    {
+      "source_column": "date_legal_ownership_assigned",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/DateLegalOwnershipAssigned",
+      "type": "date",
+      "required": false
+    },
+    {
+      "source_column": "use_type",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/UseType",
+      "type": "enum",
+      "allowed_values": ["B", "P", "Z"],
+      "required": true
+    },
+    {
+      "source_column": "default_notice",
+      "target_xpath": "CreditSalesDetails/OriginationDetails/DefaultNotice",
+      "type": "yes_no",
+      "required": false
+    },
+    {
+      "source_column": "was_brand_name_used",
+      "target_xpath": "CreditSalesDetails/SalesDetails/WasBrandNameUsed",
+      "type": "enum",
+      "allowed_values": ["Y", "N", "Z"],
+      "required": false
+    },
+    {
+      "source_column": "brand_name",
+      "target_xpath": "CreditSalesDetails/SalesDetails/BrandName",
+      "type": "string100",
+      "required": false
+    },
+    {
+      "source_column": "p2p_agreement",
+      "target_xpath": "CreditSalesDetails/P2PDetails/P2PAgreement",
+      "type": "enum",
+      "allowed_values": ["A1", "A2", "B", "C", "N", "Z"],
+      "required": false
+    },
+    {
+      "source_column": "agreement_execution_date",
+      "target_xpath": "CreditSalesDetails/AgreementDuration/AgreementExecutionDate",
+      "type": "date",
+      "required": false
+    },
+    {
+      "source_column": "open_end_agreement",
+      "target_xpath": "CreditSalesDetails/AgreementDuration/OpenEndAgreement",
+      "type": "yes_no",
+      "required": false
+    },
+    {
+      "source_column": "agreement_end_date",
+      "target_xpath": "CreditSalesDetails/AgreementDuration/AgreementEndDate",
+      "type": "date",
+      "required": false,
+      "condition": "open_end_agreement == 'N'"
+    },
+    {
+      "source_column": "credit_type",
+      "target_xpath": "CreditSalesDetails/AgreementCharacteristics/CreditType",
+      "type": "enum",
+      "allowed_values": ["FS", "RA"],
+      "required": false
+    },
+    {
+      "source_column": "lending_type",
+      "target_xpath": "CreditSalesDetails/AgreementCharacteristics/FixedSumDetails/LendingType",
+      "type": "enum",
+      "allowed_values": ["A", "B"],
+      "required": false,
+      "condition": "credit_type == 'FS'"
+    },
+    {
+      "source_column": "contract_type",
+      "target_xpath": "CreditSalesDetails/AgreementCharacteristics/FixedSumDetails/ContractType",
+      "type": "enum",
+      "allowed_values": ["A", "B", "C", "D", "E", "X", "Z"],
+      "required": false,
+      "condition": "credit_type == 'FS'"
+    },
+    {
+      "source_column": "number_of_borrowers",
+      "target_xpath": "CreditSalesDetails/BorrowerDetails/NumberOfBorrowers",
+      "type": "integer",
+      "required": false
+    },
+    {
+      "source_column": "borrowers_json",
+      "target_xpath": "CreditSalesDetails/BorrowerDetails/Borrower[*]",
+      "type": "array",
+      "required": false,
+      "children": [
+        {
+          "source_key": "borrower_ref",
+          "target_xpath": "BorrowerRef",
+          "type": "string25"
+        },
+        {
+          "source_key": "borrower_dob",
+          "target_xpath": "BorrowerDOB",
+          "type": "date"
+        }
+      ]
+    },
+    {
+      "source_column": "security_type",
+      "target_xpath": "CreditSalesDetails/SecurityDetails/SecurityType",
+      "type": "enum",
+      "allowed_values": ["A", "B", "C", "D", "E", "F", "W", "X", "Z"],
+      "required": false
+    },
+    {
+      "source_column": "total_amount_of_credit",
+      "target_xpath": "CreditSalesDetails/TotalAmountCredit/TotalAmountOfCredit",
+      "type": "decimal_2",
+      "required": false
+    },
+    {
+      "source_column": "apr",
+      "target_xpath": "CreditSalesDetails/TotalChargeCredit/APR",
+      "type": "decimal_2",
+      "required": false
+    },
+    {
+      "source_column": "total_charge_for_credit",
+      "target_xpath": "CreditSalesDetails/TotalChargeCredit/TotalChargeForCredit",
+      "type": "decimal_2",
+      "required": false
+    }
+  ],
+  "rendering_rules": {
+    "omit_empty_optional_fields": true,
+    "yes_no_tokens": ["Y", "N"],
+    "date_format": "YYYY-MM-DD",
+    "decimal_scale": 2,
+    "max_borrowers": 10
+  }
+}

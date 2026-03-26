@@ -1,0 +1,30 @@
+ref,business_field,source_column,xml_path,xsd_type,required,transform_rule,sample_value
+PSD008-H01,Submitting firm reference number,submitter_firm,/PSD008-CreditAgreementSales/PSDFeedHeader/Submitter/SubmittingFirm,FRNType,true,Pass through as 6-7 digit numeric string,123456
+PSD008-H02,Report creation date,report_creation_date,/PSD008-CreditAgreementSales/PSDFeedHeader/ReportDetails/ReportCreationDate,xs:date,true,ISO date YYYY-MM-DD,2025-03-10
+PSD008-H03,Report identifier,report_identifier,/PSD008-CreditAgreementSales/PSDFeedHeader/ReportDetails/ReportIdentifier,String100Type,true,Pass through max length 100,PSD008-Q1-2025
+PSD008-001,Transaction reference,transaction_reference,/PSD008-CreditAgreementSales/PSD008FeedMsg/CoreDetails/TransRef,String25Type,true,Pass through unique per feed,TRX-PSD008-0001
+PSD008-002,Cancellation indicator,cancellation,/PSD008-CreditAgreementSales/PSD008FeedMsg/CoreDetails/Cancellation,xs:boolean,false,Boolean lexical value true/false,false
+PSD008-003,Origination type,origination_type,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/OriginationType,"enum[A,B,C,X]",true,Must match PSD008 code list exactly,C
+PSD008-004,Earlier agreement transaction reference status,earlier_agreement_trans_ref_status,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/EarlierAgreementTransRefStatus,"enum[A,B,Z]",false,Must match PSD008 code list exactly,A
+PSD008-005,Earlier agreement transaction reference,earlier_agreement_trans_ref,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/EarlierAgreementTransRef,String25Type,false,Pass through max length 25,TRX-PSD008-0000
+PSD008-006,Previous lender regulatory status,previous_lender_regulatory_status,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/PreviousLenderRegulatoryStatus,"enum[A1,A2,X,Z1,Z2]",false,Must match PSD008 code list exactly,A1
+PSD008-007,Previous lender FRN,previous_lender_frn,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/PreviousLenderFRN,FRNType,false,Pass through as 6-7 digit numeric string,123456
+PSD008-008,Previous lender name,previous_lender_name,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/PreviousLenderName,String100Type,false,Pass through max length 100,Northgate Lending Limited
+PSD008-009,Date legal ownership assigned,date_legal_ownership_assigned,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/DateLegalOwnershipAssigned,xs:date,false,ISO date YYYY-MM-DD,2025-01-01
+PSD008-010,Use type,use_type,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/UseType,"enum[B,P,Z]",true,Must match PSD008 code list exactly,P
+PSD008-011,Default notice indicator,default_notice,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/OriginationDetails/DefaultNotice,YesNoType,false,Normalize to Y or N,N
+PSD008-012,Brand name used,was_brand_name_used,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/SalesDetails/WasBrandNameUsed,"enum[Y,N,Z]",false,Must match PSD008 code list exactly,Y
+PSD008-013,Brand name,brand_name,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/SalesDetails/BrandName,String100Type,false,Pass through when present,Northgate Flex
+PSD008-014,P2P agreement indicator,p2p_agreement,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/P2PDetails/P2PAgreement,"enum[A1,A2,B,C,N,Z]",false,Must match PSD008 code list exactly,B
+PSD008-015,Agreement execution date,agreement_execution_date,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementDuration/AgreementExecutionDate,xs:date,false,ISO date YYYY-MM-DD,2025-02-15
+PSD008-016,Open end agreement indicator,open_end_agreement,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementDuration/OpenEndAgreement,YesNoType,false,Normalize to Y or N,N
+PSD008-017,Agreement end date,agreement_end_date,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementDuration/AgreementEndDate,xs:date,false,ISO date YYYY-MM-DD when agreement is not open-ended,2029-02-14
+PSD008-018,Credit type,credit_type,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementCharacteristics/CreditType,"enum[FS,RA]",false,Must match PSD008 code list exactly,FS
+PSD008-019,Lending type,lending_type,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementCharacteristics/FixedSumDetails/LendingType,"enum[A,B]",false,Must match PSD008 code list exactly,A
+PSD008-020,Contract type,contract_type,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/AgreementCharacteristics/FixedSumDetails/ContractType,"enum[A,B,C,D,E,X,Z]",false,Must match PSD008 code list exactly,A
+PSD008-021,Number of borrowers,number_of_borrowers,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/BorrowerDetails/NumberOfBorrowers,NonNegativeIntegerType,false,Numeric integer >= 0,2
+PSD008-022,Borrower party details,borrowers_json,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/BorrowerDetails/Borrower[*],complexType,false,Explode JSON array into repeating Borrower nodes with BorrowerRef and BorrowerDOB,"[{""borrower_ref"":""BRW-1001-A"",""borrower_dob"":""1986-04-13""}]"
+PSD008-023,Security type,security_type,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/SecurityDetails/SecurityType,"enum[A,B,C,D,E,F,W,X,Z]",false,Must match PSD008 code list exactly,E
+PSD008-024,Total amount of credit,total_amount_of_credit,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/TotalAmountCredit/TotalAmountOfCredit,NonNegativeMonetaryFloat2Type,false,Decimal with 2 fraction digits,12500.00
+PSD008-025,APR,apr,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/TotalChargeCredit/APR,PercentDP2Type,false,Decimal with 2 fraction digits,9.80
+PSD008-026,Total charge for credit,total_charge_for_credit,/PSD008-CreditAgreementSales/PSD008FeedMsg/CreditSalesDetails/TotalChargeCredit/TotalChargeForCredit,NonNegativeMonetaryFloat2Type,false,Decimal with 2 fraction digits,1845.25

@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.panel-title,
+.app-shell__brand-name,
+.persona-login-brand__name {
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+}
+
+.regai-root-shell {
+  min-height: 100vh;
+}
+
+.app-route {
+  min-height: 100vh;
+}
+
+:where(button, input, select, textarea) {
+  font: inherit;
+}

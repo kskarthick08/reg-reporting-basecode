@@ -1,0 +1,15 @@
+{
+  "dataset_family": "psd008",
+  "field_aliases": {
+    "transaction reference": [
+      "fact_credit_agreement_sale:transaction_reference_regulated_mortgage_contracts_and_relev"
+    ]
+  },
+  "status_thresholds": {
+    "full_match_min": 0.9,
+    "partial_match_min": 0.6
+  },
+  "forbidden_full_match_columns": [
+    "notes"
+  ]
+}

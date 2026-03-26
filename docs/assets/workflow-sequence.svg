@@ -1,0 +1,36 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#071329"/>
+  <text x="40" y="54" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="28" font-weight="700">End-to-End Workflow Sequence</text>
+
+  <rect x="40" y="120" width="210" height="70" rx="10" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="100" y="163" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">Upload</text>
+
+  <rect x="290" y="120" width="210" height="70" rx="10" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="350" y="163" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">BA Gap</text>
+
+  <rect x="540" y="120" width="210" height="70" rx="10" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="584" y="163" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">SQL Gen</text>
+
+  <rect x="790" y="120" width="210" height="70" rx="10" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="836" y="163" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">XML Gen</text>
+
+  <rect x="1030" y="120" width="130" height="70" rx="10" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="1050" y="163" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">Review</text>
+
+  <line x1="250" y1="155" x2="290" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="500" y1="155" x2="540" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="750" y1="155" x2="790" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="1000" y1="155" x2="1030" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+
+  <text x="60" y="260" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="18">1. Upload artifacts (FCA, Model, Data, XSD)</text>
+  <text x="60" y="305" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="18">2. BA agent maps requirement fields and identifies gaps</text>
+  <text x="60" y="350" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="18">3. Developer agent generates read-only SQL with schema validation</text>
+  <text x="60" y="395" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="18">4. Reviewer agent generates PSD008 XML and validates against XSD</text>
+  <text x="60" y="440" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="18">5. User reviews output, downloads artifacts, iterates with guidance</text>
+
+  <rect x="40" y="500" width="1120" height="170" rx="14" fill="#0b2040" stroke="#3ec7d9"/>
+  <text x="70" y="545" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">Validation Gates</text>
+  <text x="70" y="580" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="17">- Upload parsing and normalization</text>
+  <text x="70" y="610" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="17">- SQL read-only checks + EXPLAIN validation</text>
+  <text x="70" y="640" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="17">- XSD validation and detailed error reporting</text>
+</svg>

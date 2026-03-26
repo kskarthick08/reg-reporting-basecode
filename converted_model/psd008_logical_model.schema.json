@@ -1,0 +1,2094 @@
+{
+  "tables": [
+    {
+      "table_name": "dim_reporting_firm",
+      "sheet_name": "dim_reporting_firm",
+      "columns": [
+        {
+          "name": "firm_reference_number",
+          "source_name": "firm_reference_number",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": "(General)",
+          "description": "Firm reference number of product provider",
+          "source_system": "Reference data / reporting setup"
+        },
+        {
+          "name": "reporting_firm_id",
+          "source_name": "reporting_firm_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for reporting firm",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "reporting_firm_id"
+      ]
+    },
+    {
+      "table_name": "fact_credit_agreement_sale",
+      "sheet_name": "fact_credit_agreement_sale",
+      "columns": [
+        {
+          "name": "has_a_default_notice_taken_effect_in_relation_to_this_agreem",
+          "source_name": "has_a_default_notice_taken_effect_in_relation_to_this_agreem",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "10A",
+          "description": "Has a default notice taken effect in relation to this agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "transaction_reference_regulated_mortgage_contracts_and_relev",
+          "source_name": "transaction_reference_regulated_mortgage_contracts_and_relev",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "1A",
+          "description": "Transaction reference (regulated mortgage contracts\u00a0and relevant regulated credit agreements\u00a0only)",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "origination_agreement_type",
+          "source_name": "origination_agreement_type",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "2A",
+          "description": "Origination agreement type",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "agreement_execution_date",
+          "source_name": "agreement_execution_date",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "31A",
+          "description": "Agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "date_of_assignment_of_legal_ownership",
+          "source_name": "date_of_assignment_of_legal_ownership",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "8A",
+          "description": "Date of assignment of legal ownership",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "credit_for_business_or_personal_use",
+          "source_name": "credit_for_business_or_personal_use",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "9A",
+          "description": "Credit for business or personal use",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "agreement_characteristics_id",
+          "source_name": "agreement_characteristics_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_agreement_characterist",
+          "source_system": "EDW"
+        },
+        {
+          "name": "agreement_duration_id",
+          "source_name": "agreement_duration_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_agreement_duration",
+          "source_system": "EDW"
+        },
+        {
+          "name": "credit_broker_id",
+          "source_name": "credit_broker_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_credit_broker",
+          "source_system": "EDW"
+        },
+        {
+          "name": "creditworthiness_assessment_id",
+          "source_name": "creditworthiness_assessment_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_creditworthiness_assess",
+          "source_system": "EDW"
+        },
+        {
+          "name": "origination_context_id",
+          "source_name": "origination_context_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_origination_context",
+          "source_system": "EDW"
+        },
+        {
+          "name": "p2p_platform_operator_id",
+          "source_name": "p2p_platform_operator_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_p2p_platform_operator",
+          "source_system": "EDW"
+        },
+        {
+          "name": "penalty_charges_id",
+          "source_name": "penalty_charges_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_penalty_charges",
+          "source_system": "EDW"
+        },
+        {
+          "name": "related_product_id",
+          "source_name": "related_product_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_related_product",
+          "source_system": "EDW"
+        },
+        {
+          "name": "repayment_terms_id",
+          "source_name": "repayment_terms_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_repayment_terms",
+          "source_system": "EDW"
+        },
+        {
+          "name": "reporting_firm_id",
+          "source_name": "reporting_firm_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_reporting_firm",
+          "source_system": "EDW"
+        },
+        {
+          "name": "running_account_usage_id",
+          "source_name": "running_account_usage_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_running_account_use",
+          "source_system": "EDW"
+        },
+        {
+          "name": "security_id",
+          "source_name": "security_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_security_details",
+          "source_system": "EDW"
+        },
+        {
+          "name": "total_amount_of_credit_id",
+          "source_name": "total_amount_of_credit_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_total_amount_credit",
+          "source_system": "EDW"
+        },
+        {
+          "name": "total_charge_for_credit_id",
+          "source_name": "total_charge_for_credit_id",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_total_charge_credit",
+          "source_system": "EDW"
+        },
+        {
+          "name": "credit_agreement_sale_id",
+          "source_name": "credit_agreement_sale_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for credit agreement sale",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "credit_agreement_sale_id"
+      ]
+    },
+    {
+      "table_name": "dim_origination_context",
+      "sheet_name": "dim_origination_context",
+      "columns": [
+        {
+          "name": "earlier_agreement_transaction_reference_status",
+          "source_name": "earlier_agreement_transaction_reference_status",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "3A",
+          "description": "Earlier agreement \u2013 transaction reference status",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "earlier_agreement_transaction_reference",
+          "source_name": "earlier_agreement_transaction_reference",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "4A",
+          "description": "Earlier agreement \u2013 transaction reference",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "previous_lender_regulatory_status",
+          "source_name": "previous_lender_regulatory_status",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "5A",
+          "description": "Previous lender regulatory status",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "previous_lender_frn",
+          "source_name": "previous_lender_frn",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "6A",
+          "description": "Previous lender FRN",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "previous_lender_name",
+          "source_name": "previous_lender_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "7A",
+          "description": "Previous lender name",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "origination_context_id",
+          "source_name": "origination_context_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for origination context",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "origination_context_id"
+      ]
+    },
+    {
+      "table_name": "dim_related_product",
+      "sheet_name": "dim_related_product",
+      "columns": [
+        {
+          "name": "was_a_brand_name_used_other_than_the_reporting_firm_s_name",
+          "source_name": "was_a_brand_name_used_other_than_the_reporting_firm_s_name",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "11A",
+          "description": "Was a brand name used other than the reporting firm\u2019s name?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "does_the_agreement_use_a_brand_that_represents_the_reporting",
+          "source_name": "does_the_agreement_use_a_brand_that_represents_the_reporting",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "12A",
+          "description": "Does the agreement use a brand that represents the reporting firm\u2019s group or a third party?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "brand_name_used_for_the_agreement",
+          "source_name": "brand_name_used_for_the_agreement",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "13A",
+          "description": "Brand name used for the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_product_only_available_to_a_particular_class_of_indiv",
+          "source_name": "is_the_product_only_available_to_a_particular_class_of_indiv",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "14A",
+          "description": "Is the product only available to a particular class of individual?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "were_there_any_financial_promotions_for_the_related_product",
+          "source_name": "were_there_any_financial_promotions_for_the_related_product",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "15A",
+          "description": "Were there any financial promotions for the related product?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "representative_apr_used_in_financial_promotions_for_the_rela",
+          "source_name": "representative_apr_used_in_financial_promotions_for_the_rela",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "16A",
+          "description": "Representative APR used in financial promotions for the related product",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "internal_reference_for_related_product",
+          "source_name": "internal_reference_for_related_product",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "17A",
+          "description": "Internal reference for related product",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "related_product_name",
+          "source_name": "related_product_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "18A",
+          "description": "Related product name",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "related_product_id",
+          "source_name": "related_product_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for related product",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "related_product_id"
+      ]
+    },
+    {
+      "table_name": "dim_credit_broker",
+      "sheet_name": "dim_credit_broker",
+      "columns": [
+        {
+          "name": "did_another_person_effect_an_introduction_of_the_borrower_s",
+          "source_name": "did_another_person_effect_an_introduction_of_the_borrower_s_",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "23A",
+          "description": "Did another person effect an introduction of the borrower(s) to the reporting firm?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "credit_broker_frn",
+          "source_name": "credit_broker_frn",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "24A",
+          "description": "Credit broker FRN",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "credit_broker_name",
+          "source_name": "credit_broker_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "25A",
+          "description": "Credit broker name",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "commission_paid_by_reporting_firm_to_credit_broker",
+          "source_name": "commission_paid_by_reporting_firm_to_credit_broker",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "26A",
+          "description": "Commission paid by reporting firm to credit broker",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "commission_received_by_reporting_firm_from_credit_broker",
+          "source_name": "commission_received_by_reporting_firm_from_credit_broker",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "27A",
+          "description": "Commission received by reporting firm from credit broker",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "credit_broker_id",
+          "source_name": "credit_broker_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for credit broker",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "credit_broker_id"
+      ]
+    },
+    {
+      "table_name": "dim_p2p_platform_operator",
+      "sheet_name": "dim_p2p_platform_operator",
+      "columns": [
+        {
+          "name": "is_the_credit_agreement_also_a_p2p_agreement",
+          "source_name": "is_the_credit_agreement_also_a_p2p_agreement",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "28A",
+          "description": "Is the credit agreement also a P2P agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "p2p_platform_operator_frn",
+          "source_name": "p2p_platform_operator_frn",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "29A",
+          "description": "P2P platform operator FRN",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "p2p_platform_operator_name",
+          "source_name": "p2p_platform_operator_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "30A",
+          "description": "P2P platform operator name",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "p2p_platform_operator_id",
+          "source_name": "p2p_platform_operator_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for P2P platform operator",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "p2p_platform_operator_id"
+      ]
+    },
+    {
+      "table_name": "dim_agreement_duration",
+      "sheet_name": "dim_agreement_duration",
+      "columns": [
+        {
+          "name": "is_the_agreement_an_open_end_agreement",
+          "source_name": "is_the_agreement_an_open_end_agreement",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "32A",
+          "description": "Is the agreement an open-end agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "agreement_end_date",
+          "source_name": "agreement_end_date",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "33A",
+          "description": "Agreement end date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_there_a_minimum_duration_for_the_open_end_agreement",
+          "source_name": "is_there_a_minimum_duration_for_the_open_end_agreement",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "34A",
+          "description": "Is there a minimum duration for the open-end agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "minimum_duration_end_date",
+          "source_name": "minimum_duration_end_date",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "35A",
+          "description": "Minimum duration end date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "agreement_duration_id",
+          "source_name": "agreement_duration_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for agreement duration",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "agreement_duration_id"
+      ]
+    },
+    {
+      "table_name": "dim_agreement_characterist",
+      "sheet_name": "dim_agreement_characterist",
+      "columns": [
+        {
+          "name": "do_any_financial_promotions_for_the_related_product_make_ref",
+          "source_name": "do_any_financial_promotions_for_the_related_product_make_ref",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "19A",
+          "description": "Do any financial promotions for the related product make reference to it being available to an individual with restricted access to credit?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "how_the_sale_was_made",
+          "source_name": "how_the_sale_was_made",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "21A",
+          "description": "How the sale was made",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "postcode_of_trade_premises_where_sale_was_made",
+          "source_name": "postcode_of_trade_premises_where_sale_was_made",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "22A",
+          "description": "Postcode of trade premises where sale was made",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_agreement_a_credit_token_agreement",
+          "source_name": "is_the_agreement_a_credit_token_agreement",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "36A",
+          "description": "Is the agreement a credit token agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_facility_under_the_credit_agreement_fixed_sum_or_runn",
+          "source_name": "is_the_facility_under_the_credit_agreement_fixed_sum_or_runn",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "37A",
+          "description": "Is the facility under the credit agreement fixed-sum or running-account?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "how_can_the_running_account_credit_be_used",
+          "source_name": "how_can_the_running_account_credit_be_used",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "38A",
+          "description": "How can the running-account credit be used?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "payment_network",
+          "source_name": "payment_network",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "39A",
+          "description": "Payment network",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "with_which_suppliers_can_the_running_account_credit_be_used",
+          "source_name": "with_which_suppliers_can_the_running_account_credit_be_used",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "40A",
+          "description": "With which suppliers can the running-account\u00a0credit be used?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regulatory_status_of_the_supplier_in_respect_of_whom_the_run",
+          "source_name": "regulatory_status_of_the_supplier_in_respect_of_whom_the_run",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "41A",
+          "description": "Regulatory status of the supplier in respect of whom the running-account\u00a0credit applies",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "running_account_credit_supplier_frn",
+          "source_name": "running_account_credit_supplier_frn",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "42A",
+          "description": "Running-account\u00a0credit supplier FRN",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "running_account_credit_supplier_name",
+          "source_name": "running_account_credit_supplier_name",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "43A",
+          "description": "Running-account\u00a0credit supplier name",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_agreement_a_bnpl_agreement",
+          "source_name": "is_the_agreement_a_bnpl_agreement",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "44A",
+          "description": "Is the agreement a BNPL agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "type_of_periodic_premiums_or_fees",
+          "source_name": "type_of_periodic_premiums_or_fees",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "45A",
+          "description": "Type of periodic premiums or fees",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_agreement_a_borrower_lender_agreement_or_a_borrower_l",
+          "source_name": "is_the_agreement_a_borrower_lender_agreement_or_a_borrower_l",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "46A",
+          "description": "Is the agreement a borrower-lender agreement or a borrower-lender-supplier agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "supplier_regulatory_status",
+          "source_name": "supplier_regulatory_status",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "47A",
+          "description": "Supplier regulatory status",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "supplier_frn",
+          "source_name": "supplier_frn",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "48A",
+          "description": "Supplier FRN",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "supplier_name",
+          "source_name": "supplier_name",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "49A",
+          "description": "Supplier name",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_agreement_one_of_these_specific_contract_types",
+          "source_name": "is_the_agreement_one_of_these_specific_contract_types",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "50A",
+          "description": "Is the agreement one of these specific contract types?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "does_the_agreement_meet_the_criteria_of_one_of_these_agreeme",
+          "source_name": "does_the_agreement_meet_the_criteria_of_one_of_these_agreeme",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "51A",
+          "description": "Does the agreement meet the criteria of one of these agreement types as defined in the FCA Handbook?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "end_date_of_promotional_period_for_bnpl_credit",
+          "source_name": "end_date_of_promotional_period_for_bnpl_credit",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "52A",
+          "description": "End date of promotional period for BNPL credit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "type_of_goods_or_services_provided_by_the_supplier_financed",
+          "source_name": "type_of_goods_or_services_provided_by_the_supplier_financed_",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "53A",
+          "description": "Type of goods or services provided by the supplier financed by the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "was_the_motor_vehicle_financed_new_or_used",
+          "source_name": "was_the_motor_vehicle_financed_new_or_used",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "54A",
+          "description": "Was the motor vehicle financed new or used?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "type_of_motor_vehicle_financed",
+          "source_name": "type_of_motor_vehicle_financed",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "55A",
+          "description": "Type of motor vehicle financed",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_hire_purchase_agreement_a_personal_contract_purchase",
+          "source_name": "is_the_hire_purchase_agreement_a_personal_contract_purchase_",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "56A",
+          "description": "Is the hire-purchase agreement a personal contract purchase agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "guaranteed_minimum_future_value",
+          "source_name": "guaranteed_minimum_future_value",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "57A",
+          "description": "Guaranteed minimum future value",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "anticipated_annual_mileage",
+          "source_name": "anticipated_annual_mileage",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "58A",
+          "description": "Anticipated annual mileage",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "declared_purpose_of_borrowing",
+          "source_name": "declared_purpose_of_borrowing",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "59A",
+          "description": "Declared purpose of borrowing",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "was_any_portion_of_the_loan_for_direct_payment_to_existing_c",
+          "source_name": "was_any_portion_of_the_loan_for_direct_payment_to_existing_c",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "60A",
+          "description": "Was any portion of the loan for direct payment to existing creditors?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "value_of_direct_payments_to_existing_creditors",
+          "source_name": "value_of_direct_payments_to_existing_creditors",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "61A",
+          "description": "Value of direct payments to existing creditors",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "reporting_firm_s_unique_reference_for_natural_person_acting",
+          "source_name": "reporting_firm_s_unique_reference_for_natural_person_acting_",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "82A",
+          "description": "Reporting firm\u2019s unique reference for natural person acting as guarantor",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "guarantor_s_date_of_birth",
+          "source_name": "guarantor_s_date_of_birth",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "83A",
+          "description": "Guarantor\u2019s date of birth",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "guarantor_s_residential_address_type",
+          "source_name": "guarantor_s_residential_address_type",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "84A",
+          "description": "Guarantor\u2019s residential address type",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "guarantor_s_residential_postcode_on_the_agreement_execution",
+          "source_name": "guarantor_s_residential_postcode_on_the_agreement_execution_",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "85A",
+          "description": "Guarantor\u2019s residential postcode on the agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "guarantor_s_residential_status_on_the_agreement_execution_da",
+          "source_name": "guarantor_s_residential_status_on_the_agreement_execution_da",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "86A",
+          "description": "Guarantor\u2019s residential status on the agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "guarantor_s_employment_status_on_the_agreement_execution_dat",
+          "source_name": "guarantor_s_employment_status_on_the_agreement_execution_dat",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "87A",
+          "description": "Guarantor\u2019s employment status on the agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "detail_of_guarantor_s_employment",
+          "source_name": "detail_of_guarantor_s_employment",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "88A",
+          "description": "Detail of guarantor\u2019s employment",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "detail_of_guarantor_s_not_employed_status",
+          "source_name": "detail_of_guarantor_s_not_employed_status",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "89A",
+          "description": "Detail of guarantor\u2019s not employed status",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "did_the_creditworthiness_assessment_of_the_guarantor_for_the",
+          "source_name": "did_the_creditworthiness_assessment_of_the_guarantor_for_the",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "90A",
+          "description": "Did the creditworthiness assessment of the guarantor for the agreement include any manual underwriting check?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "income_and_expenditure_information_held_in_relation_to_the_c",
+          "source_name": "income_and_expenditure_information_held_in_relation_to_the_c",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "91A",
+          "description": "Income and expenditure information held in relation to the creditworthiness assessment of the guarantor",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "number_of_financial_dependants_for_the_guarantor",
+          "source_name": "number_of_financial_dependants_for_the_guarantor",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "92A",
+          "description": "Number of financial dependants for the guarantor",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "net_or_gross_income_values_for_guarantor",
+          "source_name": "net_or_gross_income_values_for_guarantor",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "93A",
+          "description": "Net or gross income values for guarantor",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "monthly_income_of_the_guarantor_used_by_the_reporting_firm",
+          "source_name": "monthly_income_of_the_guarantor_used_by_the_reporting_firm",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "94A",
+          "description": "Monthly income of the guarantor used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_monthly_expenditure_of_the_guarantor_used_by_the_repor",
+          "source_name": "total_monthly_expenditure_of_the_guarantor_used_by_the_repor",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "95A",
+          "description": "Total monthly expenditure of the guarantor used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "monthly_income_declared_by_the_guarantor",
+          "source_name": "monthly_income_declared_by_the_guarantor",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "96A",
+          "description": "Monthly income declared by the guarantor",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_monthly_expenditure_declared_by_the_guarantor",
+          "source_name": "total_monthly_expenditure_declared_by_the_guarantor",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "97A",
+          "description": "Total monthly expenditure declared by the guarantor",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "specific_type_of_monthly_expenditure_of_the_guarantor_used_b",
+          "source_name": "specific_type_of_monthly_expenditure_of_the_guarantor_used_b",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "98A",
+          "description": "Specific type of monthly expenditure of the guarantor used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "specific_total_monthly_expenditure_of_the_guarantor_used_by",
+          "source_name": "specific_total_monthly_expenditure_of_the_guarantor_used_by_",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "98B",
+          "description": "Specific total monthly expenditure of the guarantor used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "agreement_characteristics_id",
+          "source_name": "agreement_characteristics_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for agreement characteristics",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "agreement_characteristics_id"
+      ]
+    },
+    {
+      "table_name": "dim_borrower",
+      "sheet_name": "dim_borrower",
+      "columns": [
+        {
+          "name": "is_the_borrower_a_natural_person_acting_as_a_sole_trader_or",
+          "source_name": "is_the_borrower_a_natural_person_acting_as_a_sole_trader_or_",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "62A",
+          "description": "Is the borrower a natural person acting as a sole trader or a relevant recipient of credit?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "reporting_firm_s_unique_reference_for_relevant_recipient_of",
+          "source_name": "reporting_firm_s_unique_reference_for_relevant_recipient_of_",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "63A",
+          "description": "Reporting firm\u2019s unique reference for relevant recipient of credit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "name_of_relevant_recipient_of_credit",
+          "source_name": "name_of_relevant_recipient_of_credit",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "64A",
+          "description": "Name of relevant recipient of credit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "number_of_borrowers_named_in_the_agreement",
+          "source_name": "number_of_borrowers_named_in_the_agreement",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "65A",
+          "description": "Number of borrowers named in the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "reporting_firm_s_unique_reference_for_natural_person_acting",
+          "source_name": "reporting_firm_s_unique_reference_for_natural_person_acting_",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66A",
+          "description": "Reporting firm\u2019s unique reference for natural person acting as borrower",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "borrower_s_date_of_birth",
+          "source_name": "borrower_s_date_of_birth",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66B",
+          "description": "Borrower\u2019s date of birth",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "borrower_s_residential_address_type",
+          "source_name": "borrower_s_residential_address_type",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66C",
+          "description": "Borrower\u2019s residential address type",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "borrower_s_residential_postcode_on_the_agreement_execution_d",
+          "source_name": "borrower_s_residential_postcode_on_the_agreement_execution_d",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66D",
+          "description": "Borrower\u2019s residential postcode on the agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "borrower_s_residential_status_on_the_agreement_execution_dat",
+          "source_name": "borrower_s_residential_status_on_the_agreement_execution_dat",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66E",
+          "description": "Borrower\u2019s residential status on the agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "borrower_s_employment_status_on_the_agreement_execution_date",
+          "source_name": "borrower_s_employment_status_on_the_agreement_execution_date",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66F",
+          "description": "Borrower\u2019s employment status on the agreement execution date",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "detail_of_borrower_s_employment",
+          "source_name": "detail_of_borrower_s_employment",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66G",
+          "description": "Detail of borrower\u2019s employment",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "detail_of_borrower_s_not_employed_status",
+          "source_name": "detail_of_borrower_s_not_employed_status",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "66H",
+          "description": "Detail of borrower\u2019s not employed status",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "borrower_id",
+          "source_name": "borrower_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for borrower",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "borrower_id"
+      ]
+    },
+    {
+      "table_name": "bridge_credit_agreement_borrowe",
+      "sheet_name": "bridge_credit_agreement_borrowe",
+      "columns": [
+        {
+          "name": "borrower_id",
+          "source_name": "borrower_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to dim_borrower",
+          "source_system": "EDW"
+        },
+        {
+          "name": "credit_agreement_sale_id",
+          "source_name": "credit_agreement_sale_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "FK",
+          "psd_ref": null,
+          "description": "Links to fact_credit_agreement_sale",
+          "source_system": "EDW"
+        },
+        {
+          "name": "borrower_sequence_number",
+          "source_name": "borrower_sequence_number",
+          "sql_type": "INTEGER",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": "65A",
+          "description": "Sequence for multi-borrower agreements",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "borrower_sequence_number"
+      ]
+    },
+    {
+      "table_name": "dim_creditworthiness_assess",
+      "sheet_name": "dim_creditworthiness_assess",
+      "columns": [
+        {
+          "name": "did_the_creditworthiness_assessment_of_the_borrower_s_for_th",
+          "source_name": "did_the_creditworthiness_assessment_of_the_borrower_s_for_th",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "67A",
+          "description": "Did the creditworthiness assessment of the borrower(s) for the agreement include any manual underwriting check?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "income_and_expenditure_information_held_in_relation_to_the_c",
+          "source_name": "income_and_expenditure_information_held_in_relation_to_the_c",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "68A",
+          "description": "Income and expenditure information held in relation to the creditworthiness assessment of the borrower(s)",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_a_future_lump_sum_expected_to_account_for_whole_or_partia",
+          "source_name": "is_a_future_lump_sum_expected_to_account_for_whole_or_partia",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "69A",
+          "description": "Is a future lump sum expected to account for whole or partial repayment but not as a security?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_repayment_through_a_future_earnings_agreement_income_shar",
+          "source_name": "is_repayment_through_a_future_earnings_agreement_income_shar",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "70A",
+          "description": "Is repayment through a future earnings agreement/income share agreement?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "combined_number_of_financial_dependants_for_the_borrower_s",
+          "source_name": "combined_number_of_financial_dependants_for_the_borrower_s",
+          "sql_type": "INTEGER",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "71A",
+          "description": "Combined number of financial dependants for the borrower(s)",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "net_or_gross_income_values_for_borrower_s",
+          "source_name": "net_or_gross_income_values_for_borrower_s",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "72A",
+          "description": "Net or gross income values for borrower(s)",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "combined_monthly_income_of_the_borrower_s_used_by_the_report",
+          "source_name": "combined_monthly_income_of_the_borrower_s_used_by_the_report",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "73A",
+          "description": "Combined monthly income of the borrower(s) used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "combined_total_monthly_expenditure_of_the_borrower_s_used_by",
+          "source_name": "combined_total_monthly_expenditure_of_the_borrower_s_used_by",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "74A",
+          "description": "Combined total monthly expenditure of the borrower(s) used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "combined_monthly_income_declared_by_the_borrower_s",
+          "source_name": "combined_monthly_income_declared_by_the_borrower_s",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "75A",
+          "description": "Combined monthly income declared by the borrower(s)",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "combined_total_monthly_expenditure_declared_by_the_borrower",
+          "source_name": "combined_total_monthly_expenditure_declared_by_the_borrower_",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "76A",
+          "description": "Combined total monthly expenditure declared by the borrower(s)",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "specific_type_of_combined_monthly_expenditure_of_the_borrowe",
+          "source_name": "specific_type_of_combined_monthly_expenditure_of_the_borrowe",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "77A",
+          "description": "Specific type of combined monthly expenditure of the borrower(s) used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "specific_combined_total_monthly_expenditure_of_the_borrower",
+          "source_name": "specific_combined_total_monthly_expenditure_of_the_borrower_",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "77B",
+          "description": "Specific combined total monthly expenditure of the borrower(s) used by the reporting firm",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "creditworthiness_assessment_id",
+          "source_name": "creditworthiness_assessment_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for creditworthiness assessment",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "creditworthiness_assessment_id"
+      ]
+    },
+    {
+      "table_name": "dim_security_details",
+      "sheet_name": "dim_security_details",
+      "columns": [
+        {
+          "name": "type_of_security_provided_by_borrower_s_in_relation_to_agree",
+          "source_name": "type_of_security_provided_by_borrower_s_in_relation_to_agree",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "78A",
+          "description": "Type of security provided by borrower(s) in relation to agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "estimated_value_of_security_provided_by_borrower_s_in_relati",
+          "source_name": "estimated_value_of_security_provided_by_borrower_s_in_relati",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "79A",
+          "description": "Estimated value of security provided by borrower(s) in relation to agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "what_type_of_future_lump_sum_is_the_security",
+          "source_name": "what_type_of_future_lump_sum_is_the_security",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "80A",
+          "description": "What type of future lump sum is the security?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_person_who_has_provided_the_guarantee_or_the_indemnit",
+          "source_name": "is_the_person_who_has_provided_the_guarantee_or_the_indemnit",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "81A",
+          "description": "Is the person who has provided the guarantee or the indemnity (or both) a natural person?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "security_id",
+          "source_name": "security_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for security / guarantee",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "security_id"
+      ]
+    },
+    {
+      "table_name": "dim_total_amount_credit",
+      "sheet_name": "dim_total_amount_credit",
+      "columns": [
+        {
+          "name": "the_value_of_the_total_amount_of_credit_which_is_not_advance",
+          "source_name": "the_value_of_the_total_amount_of_credit_which_is_not_advance",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "100A",
+          "description": "The value of the total amount of credit which is not advanced to the borrower(s) at the start of the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_cash_price_of_all_goods_and_services_financed_by_the_a",
+          "source_name": "total_cash_price_of_all_goods_and_services_financed_by_the_a",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "101A",
+          "description": "Total cash price of all goods and services financed by the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "advance_payment",
+          "source_name": "advance_payment",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "102A",
+          "description": "Advance payment",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_amount_of_credit",
+          "source_name": "total_amount_of_credit",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "99A",
+          "description": "Total amount of credit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_amount_of_credit_id",
+          "source_name": "total_amount_of_credit_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for total amount of credit",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "total_amount_of_credit_id"
+      ]
+    },
+    {
+      "table_name": "dim_total_charge_credit",
+      "sheet_name": "dim_total_charge_credit",
+      "columns": [
+        {
+          "name": "apr",
+          "source_name": "apr",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "103A",
+          "description": "APR",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_the_annual_interest_rate_fixed_or_variable",
+          "source_name": "is_the_annual_interest_rate_fixed_or_variable",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "104A",
+          "description": "Is the annual interest rate fixed or variable?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "does_the_rate_of_interest_reduce_over_time_in_response_to_in",
+          "source_name": "does_the_rate_of_interest_reduce_over_time_in_response_to_in",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "105A",
+          "description": "Does the rate of interest reduce over time in response to indicators of reduced risk?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "annual_interest_rate",
+          "source_name": "annual_interest_rate",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "106A",
+          "description": "Annual interest rate",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit",
+          "source_name": "total_charge_for_credit",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "107A",
+          "description": "Total charge for credit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit_total_fees_or_charges_payable_by_the",
+          "source_name": "total_charge_for_credit_total_fees_or_charges_payable_by_the",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "108A",
+          "description": "Total charge for credit: Total fees or charges payable by the borrower(s) to a credit broker in connection with the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit_total_one_off_costs_payable_to_the_r",
+          "source_name": "total_charge_for_credit_total_one_off_costs_payable_to_the_r",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "109A",
+          "description": "Total charge for credit: Total one-off costs payable to the reporting firm upon entering into the agreement",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit_total_periodic_fees_or_charges_payab",
+          "source_name": "total_charge_for_credit_total_periodic_fees_or_charges_payab",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "110A",
+          "description": "Total charge for credit: Total periodic fees or charges payable",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_periodic_fees_or_charges_payable_in_an_annual_period",
+          "source_name": "total_periodic_fees_or_charges_payable_in_an_annual_period",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "111A",
+          "description": "Total periodic fees or charges payable in an annual period",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_there_an_initial_promotional_period_during_which_regular",
+          "source_name": "is_there_an_initial_promotional_period_during_which_regular_",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "112A",
+          "description": "Is there an initial promotional period during which regular periodic fees are not charged?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit_total_interest_payable",
+          "source_name": "total_charge_for_credit_total_interest_payable",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "113A",
+          "description": "Total charge for credit: Total interest payable",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit_total_other_costs_included_in_the_to",
+          "source_name": "total_charge_for_credit_total_other_costs_included_in_the_to",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "114A",
+          "description": "Total charge for credit: Total other costs included in the total charge for credit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "total_charge_for_credit_id",
+          "source_name": "total_charge_for_credit_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for total charge for credit",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "total_charge_for_credit_id"
+      ]
+    },
+    {
+      "table_name": "dim_running_account_use",
+      "sheet_name": "dim_running_account_use",
+      "columns": [
+        {
+          "name": "can_qualifying_drawdowns_for_purchases_be_repaid_with_an_ins",
+          "source_name": "can_qualifying_drawdowns_for_purchases_be_repaid_with_an_ins",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "115A",
+          "description": "Can qualifying drawdowns for purchases be repaid with an instalment plan?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "does_the_product_include_any_rewards_for_making_qualifying_d",
+          "source_name": "does_the_product_include_any_rewards_for_making_qualifying_d",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "116A",
+          "description": "Does the product include any rewards for making qualifying drawdowns?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "type_of_rewards_for_borrower_s_to_make_drawdowns",
+          "source_name": "type_of_rewards_for_borrower_s_to_make_drawdowns",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "117A",
+          "description": "Type of rewards for borrower(s) to make drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regular_non_promotional_percentage_fee_for_non_sterling_draw",
+          "source_name": "regular_non_promotional_percentage_fee_for_non_sterling_draw",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "118A",
+          "description": "Regular (non-promotional) percentage fee for non-sterling drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regular_non_promotional_minimum_fee_for_non_sterling_drawdow",
+          "source_name": "regular_non_promotional_minimum_fee_for_non_sterling_drawdow",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "119A",
+          "description": "Regular (non-promotional) minimum fee for non-sterling drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "drawdown_type",
+          "source_name": "drawdown_type",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120A",
+          "description": "Drawdown type",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "is_there_an_initial_promotional_period_for_drawdowns",
+          "source_name": "is_there_an_initial_promotional_period_for_drawdowns",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120B",
+          "description": "Is there an initial promotional period for drawdowns?",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "promotional_annual_interest_rate_for_drawdowns",
+          "source_name": "promotional_annual_interest_rate_for_drawdowns",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120C",
+          "description": "Promotional annual interest rate for drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "promotional_percentage_fee_for_drawdowns",
+          "source_name": "promotional_percentage_fee_for_drawdowns",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120D",
+          "description": "Promotional percentage fee for drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "promotional_minimum_fee_per_drawdown",
+          "source_name": "promotional_minimum_fee_per_drawdown",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120E",
+          "description": "Promotional minimum fee per drawdown",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "promotional_fixed_fee_per_drawdown",
+          "source_name": "promotional_fixed_fee_per_drawdown",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120F",
+          "description": "Promotional fixed fee per drawdown",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "promotional_end_date_for_qualifying_drawdowns",
+          "source_name": "promotional_end_date_for_qualifying_drawdowns",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120G",
+          "description": "Promotional end date for qualifying drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "promotional_end_date_for_promotional_rate_for_drawdowns",
+          "source_name": "promotional_end_date_for_promotional_rate_for_drawdowns",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120H",
+          "description": "Promotional end date for promotional rate for drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regular_non_promotional_annual_interest_rate_for_drawdowns",
+          "source_name": "regular_non_promotional_annual_interest_rate_for_drawdowns",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120I",
+          "description": "Regular (non-promotional) annual interest rate for drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regular_non_promotional_percentage_fee_for_drawdowns",
+          "source_name": "regular_non_promotional_percentage_fee_for_drawdowns",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120J",
+          "description": "Regular (non-promotional) percentage fee for drawdowns",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regular_non_promotional_minimum_fee_per_drawdown",
+          "source_name": "regular_non_promotional_minimum_fee_per_drawdown",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120K",
+          "description": "Regular (non-promotional) minimum fee per drawdown",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "regular_non_promotional_fixed_fee_per_drawdown",
+          "source_name": "regular_non_promotional_fixed_fee_per_drawdown",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "120L",
+          "description": "Regular (non-promotional) fixed fee per drawdown",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "annual_interest_rate_for_periodic_premium_or_fee",
+          "source_name": "annual_interest_rate_for_periodic_premium_or_fee",
+          "sql_type": "DECIMAL(7,4)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "121A",
+          "description": "Annual interest rate for periodic premium or fee",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "running_account_usage_id",
+          "source_name": "running_account_usage_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for running account usage",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "running_account_usage_id"
+      ]
+    },
+    {
+      "table_name": "dim_penalty_charges",
+      "sheet_name": "dim_penalty_charges",
+      "columns": [
+        {
+          "name": "penalty_charge_for_a_late_repayment",
+          "source_name": "penalty_charge_for_a_late_repayment",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "122A",
+          "description": "Penalty charge for a late repayment",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "penalty_charge_for_a_repayment_returned_unpaid",
+          "source_name": "penalty_charge_for_a_repayment_returned_unpaid",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "123A",
+          "description": "Penalty charge for a repayment returned unpaid",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "penalty_charge_for_agreement_balance_being_over_the_agreed_c",
+          "source_name": "penalty_charge_for_agreement_balance_being_over_the_agreed_c",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "124A",
+          "description": "Penalty charge for agreement balance being over the agreed credit limit",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "penalty_charges_id",
+          "source_name": "penalty_charges_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for penalty charges",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "penalty_charges_id"
+      ]
+    },
+    {
+      "table_name": "dim_repayment_terms",
+      "sheet_name": "dim_repayment_terms",
+      "columns": [
+        {
+          "name": "repayment_method_arranged",
+          "source_name": "repayment_method_arranged",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "125A",
+          "description": "Repayment method arranged",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "frequency_of_regular_repayments_or_statements",
+          "source_name": "frequency_of_regular_repayments_or_statements",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "126A",
+          "description": "Frequency of regular repayments or statements",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "number_of_repayments_scheduled",
+          "source_name": "number_of_repayments_scheduled",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "127A",
+          "description": "Number of repayments scheduled",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "amount_of_regular_repayment",
+          "source_name": "amount_of_regular_repayment",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": "128A",
+          "description": "Amount of regular repayment",
+          "source_system": "EDW (sourced from LOS/LMS as applicable)"
+        },
+        {
+          "name": "repayment_terms_id",
+          "source_name": "repayment_terms_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "PK",
+          "psd_ref": null,
+          "description": "Surrogate key for repayment terms",
+          "source_system": "EDW"
+        }
+      ],
+      "primary_keys": [
+        "repayment_terms_id"
+      ]
+    },
+    {
+      "table_name": "regulatory_field_extension",
+      "sheet_name": "regulatory_field_extension",
+      "columns": [
+        {
+          "name": "entity_type",
+          "source_name": "entity_type",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Target entity type (e.g., fact_credit_agreement_sale)",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "entity_id",
+          "source_name": "entity_id",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Identifier of the target entity row",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "regulatory_report_code",
+          "source_name": "regulatory_report_code",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Report code (e.g., PSD008)",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "regulatory_field_code",
+          "source_name": "regulatory_field_code",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Regulatory field identifier for added/changed items",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "regulatory_field_name",
+          "source_name": "regulatory_field_name",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Human readable field name",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "data_type",
+          "source_name": "data_type",
+          "sql_type": "TEXT",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Declared data type",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "value_string",
+          "source_name": "value_string",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Value as string (if applicable)",
+          "source_system": "EDW / RRaaS platform"
+        },
+        {
+          "name": "value_number",
+          "source_name": "value_number",
+          "sql_type": "DECIMAL(18,2)",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Value as number (if applicable)",
+          "source_system": "EDW / RRaaS platform"
+        },
+        {
+          "name": "value_date",
+          "source_name": "value_date",
+          "sql_type": "DATE",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Value as date (if applicable)",
+          "source_system": "EDW / RRaaS platform"
+        },
+        {
+          "name": "value_bool",
+          "source_name": "value_bool",
+          "sql_type": "BOOLEAN",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Value as boolean (if applicable)",
+          "source_system": "EDW / RRaaS platform"
+        },
+        {
+          "name": "effective_from",
+          "source_name": "effective_from",
+          "sql_type": "DATE",
+          "nullable": false,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Effective from date to support versioning",
+          "source_system": "RRaaS platform"
+        },
+        {
+          "name": "source_system",
+          "source_name": "source_system",
+          "sql_type": "TEXT",
+          "nullable": true,
+          "pkfk": "NAN",
+          "psd_ref": null,
+          "description": "Originating system identifier",
+          "source_system": "RRaaS platform"
+        }
+      ],
+      "primary_keys": []
+    }
+  ]
+}

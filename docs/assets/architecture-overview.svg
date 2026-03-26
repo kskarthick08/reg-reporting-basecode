@@ -1,0 +1,38 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680">
+  <rect width="1200" height="680" fill="#071329"/>
+  <text x="40" y="52" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="28" font-weight="700">Reg Reporting AI Platform - Architecture</text>
+
+  <rect x="40" y="110" width="220" height="90" rx="12" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="75" y="160" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">User Browser</text>
+
+  <rect x="320" y="95" width="260" height="120" rx="12" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="372" y="145" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">Next.js Frontend</text>
+  <text x="378" y="172" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="14">Workbench + Admin</text>
+
+  <rect x="650" y="95" width="260" height="120" rx="12" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="722" y="145" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">FastAPI</text>
+  <text x="708" y="172" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="14">Agent orchestration</text>
+
+  <rect x="960" y="95" width="200" height="120" rx="12" fill="#0f2a52" stroke="#3ec7d9"/>
+  <text x="1012" y="145" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="20">LLM</text>
+  <text x="990" y="172" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="14">aXet / Chat Completions</text>
+
+  <rect x="560" y="300" width="200" height="110" rx="12" fill="#103258" stroke="#3ec7d9"/>
+  <text x="605" y="348" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="19">Postgres</text>
+  <text x="600" y="373" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="13">Artifacts, runs, metadata</text>
+
+  <rect x="800" y="300" width="160" height="110" rx="12" fill="#103258" stroke="#3ec7d9"/>
+  <text x="852" y="348" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="19">Redis</text>
+
+  <rect x="320" y="300" width="200" height="110" rx="12" fill="#103258" stroke="#3ec7d9"/>
+  <text x="342" y="348" fill="#d6f4ff" font-family="Segoe UI, Arial" font-size="19">/data Storage</text>
+  <text x="344" y="373" fill="#9ad8e5" font-family="Segoe UI, Arial" font-size="13">Uploaded + generated files</text>
+
+  <line x1="260" y1="155" x2="320" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="580" y1="155" x2="650" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="910" y1="155" x2="960" y2="155" stroke="#4ad1e3" stroke-width="3"/>
+
+  <line x1="740" y1="215" x2="660" y2="300" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="760" y1="215" x2="860" y2="300" stroke="#4ad1e3" stroke-width="3"/>
+  <line x1="700" y1="215" x2="420" y2="300" stroke="#4ad1e3" stroke-width="3"/>
+</svg>

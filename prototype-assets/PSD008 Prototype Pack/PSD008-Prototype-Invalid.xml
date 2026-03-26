@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PSD008-CreditAgreementSales
+    xmlns="urn:fsa-gov-uk:MER:PSD008:1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:fsa-gov-uk:MER:PSD008:1 http://www.fsa.gov.uk/MER/DRG/PSD008/v1/PSD008-Schema.xsd">
+  <PSDFeedHeader>
+    <Submitter>
+      <SubmittingFirm>123456</SubmittingFirm>
+    </Submitter>
+    <ReportDetails>
+      <ReportCreationDate>2025-03-10</ReportCreationDate>
+      <ReportIdentifier>PSD008-Q1-2025</ReportIdentifier>
+    </ReportDetails>
+  </PSDFeedHeader>
+  <PSD008FeedMsg>
+    <CoreDetails>
+      <TransRef>TRX-PSD008-0001</TransRef>
+      <Cancellation>false</Cancellation>
+    </CoreDetails>
+    <CreditSalesDetails>
+      <OriginationDetails>
+        <OriginationType>C</OriginationType>
+        <UseType>P</UseType>
+        <DefaultNotice>no</DefaultNotice>
+      </OriginationDetails>
+      <AgreementDuration>
+        <AgreementExecutionDate>2025-02-15</AgreementExecutionDate>
+        <OpenEndAgreement>no</OpenEndAgreement>
+      </AgreementDuration>
+      <AgreementCharacteristics>
+        <CreditType>FS</CreditType>
+        <FixedSumDetails>
+          <LendingType>A</LendingType>
+          <ContractType>A</ContractType>
+        </FixedSumDetails>
+      </AgreementCharacteristics>
+      <BorrowerDetails>
+        <NumberOfBorrowers>1</NumberOfBorrowers>
+        <Borrower>
+          <BorrowerRef>BRW-1001-A</BorrowerRef>
+          <BorrowerDOB>1986-04-13</BorrowerDOB>
+        </Borrower>
+      </BorrowerDetails>
+      <TotalAmountCredit>
+        <TotalAmountOfCredit>12500.00</TotalAmountOfCredit>
+      </TotalAmountCredit>
+      <TotalChargeCredit>
+        <APR>9.80</APR>
+        <TotalChargeForCredit>1845.25</TotalChargeForCredit>
+      </TotalChargeCredit>
+    </CreditSalesDetails>
+  </PSD008FeedMsg>
+</PSD008-CreditAgreementSales>

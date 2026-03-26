@@ -1,0 +1,11 @@
+{
+  "dataset_family": "default",
+  "field_aliases": {},
+  "status_thresholds": {
+    "full_match_min": 0.85,
+    "partial_match_min": 0.55
+  },
+  "forbidden_full_match_columns": [
+    "notes"
+  ]
+}

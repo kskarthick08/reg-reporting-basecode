@@ -1,0 +1,49 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.pycache-tmp/
+.venv/
+venv/
+
+# Frontend build/runtime
+frontend/node_modules/
+frontend/.next/
+frontend/tsconfig.tsbuildinfo
+frontend/.env.local
+frontend/ui-audit/
+frontend/ui-audit-*
+frontend/ui-polish-*
+frontend/ui-review-*
+frontend/scripts/ui-audit.cjs
+
+# Backend/runtime data
+data/
+*.log
+
+# Synthetic / mock / demo datasets (do not commit)
+**/synthetic/
+**/synthetic_data/
+**/mock_data/
+**/*synthetic*.xlsx
+**/*synthetic*.xls
+**/*synthetic*.csv
+**/*synthetic*.json
+**/*mock*.xlsx
+**/*mock*.xls
+**/*mock*.csv
+**/*mock*.json
+
+# Secrets
+.env
+frontend/.env
+backend/.env
