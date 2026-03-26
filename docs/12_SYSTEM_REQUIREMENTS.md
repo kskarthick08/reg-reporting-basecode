@@ -9,7 +9,7 @@
 ## Runtime Services
 - Frontend: `localhost:3000`
 - API: `localhost:<API_PORT>` (`API_PORT` from `.env`)
-- Postgres: `localhost:5432` (default)
+- Postgres: `localhost:5431` (default)
 
 ## External Dependency
 - OpenAI-compatible LLM gateway configured by:

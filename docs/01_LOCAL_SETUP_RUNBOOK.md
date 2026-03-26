@@ -6,7 +6,7 @@ Run the local stack for development and testing: frontend, backend API, worker, 
 ## Runtime Assumptions
 - Podman or Docker with compose support (and daemon/machine running)
 - Node.js 18+ and npm 9+
-- Free ports for frontend (`3000`), Postgres (`5432`), and API host port (`API_PORT` from `.env`)
+- Free ports for frontend (`3000`), Postgres (`5431`), and API host port (`API_PORT` from `.env`)
 
 ## Standard Local Boot
 ```powershell

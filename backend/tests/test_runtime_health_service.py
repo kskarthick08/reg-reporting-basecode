@@ -2,7 +2,7 @@ from app.services import runtime_health_service
 
 
 def test_mask_connection_url_hides_password():
-    masked = runtime_health_service.mask_connection_url("postgresql+psycopg://user:secret@db.example.com:5432/app")
+    masked = runtime_health_service.mask_connection_url("postgresql+psycopg://user:secret@db.example.com:5431/app")
     assert "secret" not in masked
     assert "***" in masked
 
