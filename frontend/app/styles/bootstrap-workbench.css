@@ -1273,7 +1273,7 @@ select:focus,
 
 .workflow-home-command-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.9fr);
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 380px);
   gap: 1rem;
   align-items: start;
 }
@@ -1321,14 +1321,18 @@ select:focus,
 
 .workflow-home-focus-panel {
   display: grid;
-  gap: 1rem;
-  padding: 1.3rem;
-  border-radius: 1.4rem;
+  gap: 0.9rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 1.3rem;
   border: 1px solid color-mix(in oklab, var(--line), transparent 8%);
   background:
     radial-gradient(circle at top left, color-mix(in oklab, var(--accent), transparent 92%), transparent 26%),
     linear-gradient(180deg, color-mix(in oklab, var(--surface-strong), transparent 1%) 0%, color-mix(in oklab, var(--surface-soft), transparent 8%) 100%);
   box-shadow: 0 24px 48px rgba(2, 8, 24, 0.24);
+  max-width: 100%;
+  align-self: start;
+  position: sticky;
+  top: 1.5rem;
 }
 
 .workflow-home-focus-panel__head h3 {
