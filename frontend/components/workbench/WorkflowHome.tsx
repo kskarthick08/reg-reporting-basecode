@@ -7,10 +7,6 @@ import { projectLabel } from "./projectOptions";
 import { ActionIcon } from "./ActionIcon";
 import { AppShell } from "./AppShell";
 import type { NotificationItem, Persona, WorkflowItem, WorkflowVersionCreateInput } from "./types";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
-import { Input } from "../ui/input";
 
 type WorkflowHomeProps = {
   persona: Persona;
@@ -67,7 +63,6 @@ export function WorkflowHome({
   const [showCompleted, setShowCompleted] = useState(false);
   const [showJobCenter, setShowJobCenter] = useState(false);
   const [versionWorkflow, setVersionWorkflow] = useState<WorkflowItem | null>(null);
-  const [showCreateModal, setShowCreateModal] = useState(false);
   const personaStage = persona === "BA" ? "BA" : persona === "DEV" ? "DEV" : "REVIEWER";
   const pendingItems = workflows.filter((w) => w.pending_for_me);
   const activeJobs = projectJobs.filter((job) => job.status === "pending" || job.status === "running");
@@ -116,90 +111,63 @@ export function WorkflowHome({
     const workflowDisplayId = wf.display_id || `WF-${String(wf.id).padStart(6, "0")}`;
     const pendingOwner = wf.status === "in_progress" && wf.current_stage !== "COMPLETED" ? wf.current_stage : "None";
     const statusBucket = workflowStatusBucket(wf);
-    const statusVariant = statusBucket === "ready" ? "default" : statusBucket === "blocked" ? "destructive" : "secondary";
+    const statusTone = statusBucket === "ready" ? "badge-teal" : statusBucket === "blocked" ? "badge-amber" : "badge-slate";
     const statusText = statusBucket === "ready" ? "Ready" : statusBucket === "blocked" ? "Blocked" : "Completed";
     const runningJobs = activeJobs.filter((job) => job.workflow_id === wf.id);
-    
     return (
-      <Card 
-        key={wf.id} 
-        className={`transition-all duration-300 hover:shadow-lg ${wf.pending_for_me ? "border-amber-500 border-2 bg-amber-50/50 dark:bg-amber-950/20" : ""}`}
-      >
-        <CardHeader className="pb-3">
-          <div className="flex items-start justify-between gap-3">
-            <CardTitle className="flex items-center gap-2 text-lg">
-              {runningJobs.length > 0 ? (
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500" title={`${runningJobs.length} background job running`}></span>
-                </span>
-              ) : null}
-              <span className="font-bold">{wf.name}</span>
-            </CardTitle>
-            <div className="flex gap-2 flex-wrap justify-end">
-              {runningJobs.length > 0 && <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-300">Running</Badge>}
-              <Badge variant={statusVariant}>{statusText}</Badge>
-            </div>
+      <div key={wf.id} className={`workflow-card ${wf.pending_for_me ? "pending" : ""}`}>
+        <div className="workflow-card-top">
+          <div className="workflow-card-title">
+            {runningJobs.length > 0 ? <span className="workflow-job-indicator" aria-label={`${runningJobs.length} background job running`} /> : null}
+            <strong>{wf.name}</strong>
           </div>
-        </CardHeader>
-        
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-xs font-medium">Workflow ID</p>
-              <p className="font-semibold">{workflowDisplayId}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-xs font-medium">Stage</p>
-              <p className="font-semibold">{wf.current_stage}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-xs font-medium">Status</p>
-              <p className="font-semibold">{wf.status === "in_progress" ? "In Progress" : wf.status}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-xs font-medium">Pending Owner</p>
-              <p className="font-semibold">{pendingOwner}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-xs font-medium">PSD</p>
-              <p className="font-semibold">{wf.psd_version || "-"}</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-xs font-medium">Updated</p>
-              <p className="font-semibold">{wf.updated_at ? new Date(wf.updated_at).toLocaleString("en-GB") : "-"}</p>
-            </div>
+          <div className="workflow-card-statuses">
+            {runningJobs.length > 0 ? <span className="panel-badge badge-info-soft">Running</span> : null}
+            <span className={`panel-badge ${statusTone}`}>{statusText}</span>
           </div>
-          
-          {!!wf.quality_summary?.exit_gate_status?.message && (
-            <div className="rounded-lg bg-muted p-3 text-sm border-l-4 border-primary">
-              {wf.quality_summary.exit_gate_status.message}
-            </div>
-          )}
-        </CardContent>
-        
-        <CardFooter className="flex gap-2 pt-3">
-          <Button 
-            variant="default" 
-            className="flex-1 gap-2" 
-            onClick={() => openWorkflow(wf)}
-          >
-            <ActionIcon name="open" className="action-icon h-4 w-4" />
+        </div>
+        <div className="workflow-card-meta-grid" role="list">
+          <div className="workflow-card-meta-item" role="listitem">
+            <span className="workflow-card-meta-label">Workflow ID</span>
+            <strong>{workflowDisplayId}</strong>
+          </div>
+          <div className="workflow-card-meta-item" role="listitem">
+            <span className="workflow-card-meta-label">Stage</span>
+            <strong>{wf.current_stage}</strong>
+          </div>
+          <div className="workflow-card-meta-item" role="listitem">
+            <span className="workflow-card-meta-label">Status</span>
+            <strong>{wf.status === "in_progress" ? "In Progress" : wf.status}</strong>
+          </div>
+          <div className="workflow-card-meta-item" role="listitem">
+            <span className="workflow-card-meta-label">Pending Owner</span>
+            <strong>{pendingOwner}</strong>
+          </div>
+          <div className="workflow-card-meta-item" role="listitem">
+            <span className="workflow-card-meta-label">PSD</span>
+            <strong>{wf.psd_version || "-"}</strong>
+          </div>
+          <div className="workflow-card-meta-item" role="listitem">
+            <span className="workflow-card-meta-label">Updated</span>
+            <strong>{wf.updated_at ? new Date(wf.updated_at).toLocaleString("en-GB") : "-"}</strong>
+          </div>
+        </div>
+        {!!wf.quality_summary?.exit_gate_status?.message && (
+          <div className="project-message workflow-card-message">{wf.quality_summary.exit_gate_status.message}</div>
+        )}
+        <div className="workflow-card-actions">
+          <button className="secondary-btn btn-with-icon" onClick={() => openWorkflow(wf)}>
+            <ActionIcon name="open" className="action-icon" />
             Open Workflow
-          </Button>
+          </button>
           {persona === "BA" && (
-            <Button 
-              variant="outline" 
-              className="gap-2" 
-              onClick={() => setVersionWorkflow(wf)} 
-              disabled={workflowBusy}
-            >
-              <ActionIcon name="add" className="action-icon h-4 w-4" />
-              New Version
-            </Button>
+            <button className="secondary-btn btn-with-icon" onClick={() => setVersionWorkflow(wf)} disabled={workflowBusy}>
+              <ActionIcon name="add" className="action-icon" />
+              Create New Version
+            </button>
           )}
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     );
   }
 
@@ -245,48 +213,105 @@ export function WorkflowHome({
             <GlobalJobCenter jobs={projectJobs} title={`${persona} Active Jobs`} emptyLabel="No jobs are running for this role." />
           ) : (
             <>
-              <section className="workflow-home-hero panel">
-                <div className="workflow-home-hero__copy">
-                  <div className="workflow-panel-eyebrow">Portfolio overview</div>
-                  <h2>Workflow Queue</h2>
-                  <p>Track active work, surface blockers quickly, and keep the next handoff moving.</p>
-                </div>
-                <div className="workflow-home-hero__stats">
-                  <div className="workflow-hero-stat workflow-hero-stat--attention">
-                    <span>Needs action</span>
-                    <strong>{pendingItems.length}</strong>
-                    <small>Assigned to your role now</small>
+              <section className="workflow-home-command-grid">
+                <section className="workflow-home-hero panel">
+                  <div className="workflow-home-hero__copy">
+                    <div className="workflow-panel-eyebrow">Portfolio overview</div>
+                    <h2>Workflow Queue</h2>
+                    <p>Track active work, surface blockers quickly, and keep the next handoff moving.</p>
                   </div>
-                  <div className="workflow-hero-stat workflow-hero-stat--progress">
-                    <span>In progress</span>
-                    <strong>{inProgressCount}</strong>
-                    <small>Moving through stages</small>
+                  <div className="workflow-home-hero__stats">
+                    <div className="workflow-hero-stat workflow-hero-stat--attention">
+                      <span>Needs action</span>
+                      <strong>{pendingItems.length}</strong>
+                      <small>Assigned to your role now</small>
+                    </div>
+                    <div className="workflow-hero-stat workflow-hero-stat--progress">
+                      <span>In progress</span>
+                      <strong>{inProgressCount}</strong>
+                      <small>Moving through stages</small>
+                    </div>
+                    <div className="workflow-hero-stat workflow-hero-stat--complete">
+                      <span>Completed</span>
+                      <strong>{completedCount}</strong>
+                      <small>Finished workflows</small>
+                    </div>
+                    <div className="workflow-hero-stat workflow-hero-stat--jobs">
+                      <span>Background jobs</span>
+                      <strong>{activeJobs.length}</strong>
+                      <small>Running or queued</small>
+                    </div>
                   </div>
-                  <div className="workflow-hero-stat workflow-hero-stat--complete">
-                    <span>Completed</span>
-                    <strong>{completedCount}</strong>
-                    <small>Finished workflows</small>
+                  <div className="workflow-home-hero__signals">
+                    <div className="workflow-home-signal-card">
+                      <span>Blocked workflows</span>
+                      <strong>{blockedCount}</strong>
+                    </div>
+                    <div className="workflow-home-signal-card">
+                      <span>Ready to advance</span>
+                      <strong>{readyCount}</strong>
+                    </div>
+                    <div className="workflow-home-signal-card">
+                      <span>Active workspace</span>
+                      <strong>{projectLabel(projectId)}</strong>
+                    </div>
                   </div>
-                  <div className="workflow-hero-stat workflow-hero-stat--jobs">
-                    <span>Background jobs</span>
-                    <strong>{activeJobs.length}</strong>
-                    <small>Running or queued</small>
+                </section>
+
+                <aside className="panel workflow-home-focus-panel">
+                  <div className="workflow-home-focus-panel__head">
+                    <div className="workflow-panel-eyebrow">Current focus</div>
+                    <h3>Start here</h3>
                   </div>
-                </div>
-                <div className="workflow-home-hero__signals">
-                  <div className="workflow-home-signal-card">
-                    <span>Blocked workflows</span>
-                    <strong>{blockedCount}</strong>
-                  </div>
-                  <div className="workflow-home-signal-card">
-                    <span>Ready to advance</span>
-                    <strong>{readyCount}</strong>
-                  </div>
-                  <div className="workflow-home-signal-card">
-                    <span>Active workspace</span>
-                    <strong>{projectLabel(projectId)}</strong>
-                  </div>
-                </div>
+                  {spotlightWorkflow ? (
+                    <div className="workflow-home-spotlight">
+                      <div className="workflow-home-spotlight__top">
+                        <strong>{spotlightWorkflow.name}</strong>
+                        <span className={`panel-badge ${workflowStatusBucket(spotlightWorkflow) === "blocked" ? "badge-amber" : "badge-teal"}`}>
+                          {workflowStatusBucket(spotlightWorkflow) === "blocked" ? "Attention" : "Ready"}
+                        </span>
+                      </div>
+                      <div className="workflow-home-spotlight__meta">
+                        <span>Stage {spotlightWorkflow.current_stage}</span>
+                        <span>PSD {spotlightWorkflow.psd_version || "-"}</span>
+                        <span>{spotlightWorkflow.updated_at ? new Date(spotlightWorkflow.updated_at).toLocaleDateString("en-GB") : "-"}</span>
+                      </div>
+                      <p className="workflow-home-spotlight__copy">
+                        {spotlightWorkflow.quality_summary?.exit_gate_status?.message || "Open the workflow to review readiness, outputs, and next actions."}
+                      </p>
+                      <button className="invoke-btn btn-with-icon" onClick={() => openWorkflow(spotlightWorkflow)}>
+                        <ActionIcon name="open" className="action-icon" />
+                        Open Priority Workflow
+                      </button>
+                    </div>
+                  ) : (
+                    <p className="workflow-empty">No workflow currently needs attention.</p>
+                  )}
+                  {persona === "BA" && (
+                    <div className="workflow-home-focus-panel__create">
+                      <div className="workflow-panel-eyebrow">Launch workflow</div>
+                      <div className="workflow-create-row workflow-create-row--stacked">
+                        <input
+                          className={`header-select ${workflowNameError ? "input-error" : ""}`}
+                          placeholder="Workflow name"
+                          value={workflowName}
+                          onChange={(e) => setWorkflowName(e.target.value)}
+                        />
+                        <input
+                          className="header-select"
+                          placeholder="PSD version (optional)"
+                          value={workflowPsdVersion}
+                          onChange={(e) => setWorkflowPsdVersion(e.target.value)}
+                        />
+                        <button className="invoke-btn btn-with-icon" onClick={createWorkflow} disabled={workflowBusy}>
+                          <ActionIcon name="start" className="action-icon" />
+                          Start Workflow
+                        </button>
+                      </div>
+                      {workflowNameError && <div className="project-message">{workflowNameError}</div>}
+                    </div>
+                  )}
+                </aside>
               </section>
 
               <section className="panel workflow-queue-panel workflow-queue-panel--board">
@@ -296,17 +321,9 @@ export function WorkflowHome({
                     <h2>My Queue</h2>
                     <p className="workflow-queue-description">Prioritize items assigned to you, then review the rest of your stage.</p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    {persona === "BA" && (
-                      <Button className="gap-2" onClick={() => setShowCreateModal(true)} disabled={workflowBusy}>
-                        <ActionIcon name="start" className="action-icon h-4 w-4" />
-                        Launch Workflow
-                      </Button>
-                    )}
-                    <div className="workflow-queue-badges">
-                      <span className={`panel-badge ${pendingItems.length ? "badge-amber" : "badge-teal"}`}>Needs Action: {pendingItems.length}</span>
-                      <span className="panel-badge badge-slate">Filtered: {filtered.length}</span>
-                    </div>
+                  <div className="workflow-queue-badges">
+                    <span className={`panel-badge ${pendingItems.length ? "badge-amber" : "badge-teal"}`}>Needs Action: {pendingItems.length}</span>
+                    <span className="panel-badge badge-slate">Filtered: {filtered.length}</span>
                   </div>
                 </div>
 
@@ -412,56 +429,6 @@ export function WorkflowHome({
           setVersionWorkflow(null);
         }}
       />
-
-      {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setShowCreateModal(false)}>
-          <Card className="w-full max-w-md mx-4" onClick={(e) => e.stopPropagation()}>
-            <CardHeader>
-              <CardTitle>Launch New Workflow</CardTitle>
-              <CardDescription>Create a new workflow to begin tracking your project.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Workflow Name</label>
-                <Input
-                  className={workflowNameError ? "border-red-500" : ""}
-                  placeholder="Enter workflow name"
-                  value={workflowName}
-                  onChange={(e) => setWorkflowName(e.target.value)}
-                  autoFocus
-                />
-                {workflowNameError && <p className="text-sm text-red-500">{workflowNameError}</p>}
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">PSD Version (Optional)</label>
-                <Input
-                  placeholder="Enter PSD version"
-                  value={workflowPsdVersion}
-                  onChange={(e) => setWorkflowPsdVersion(e.target.value)}
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex gap-2">
-              <Button variant="outline" className="flex-1" onClick={() => setShowCreateModal(false)}>
-                Cancel
-              </Button>
-              <Button 
-                className="flex-1 gap-2" 
-                onClick={async () => {
-                  await createWorkflow();
-                  if (!workflowNameError) {
-                    setShowCreateModal(false);
-                  }
-                }} 
-                disabled={workflowBusy}
-              >
-                <ActionIcon name="start" className="action-icon h-4 w-4" />
-                Create Workflow
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-      )}
     </>
   );
 }
