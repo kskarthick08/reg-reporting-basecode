@@ -208,11 +208,10 @@ export function WorkflowHome({
   return (
     <>
       <AppShell
-        title={showJobCenter ? "Active Jobs" : "Workflow Home"}
+        title={showJobCenter ? "Active Jobs" : `${persona} Workspace`}
         subtitle="Manage your queue, create new work, and keep background jobs visible."
         backLabel="Back to Role Select"
         onBack={switchRole}
-        stageLabel={persona}
         projectId={projectId}
         setProjectId={setProjectId}
         backendUp={backendUp}

@@ -531,13 +531,14 @@ body::after {
 }
 
 .app-shell {
-  width: min(1400px, calc(100% - 2rem));
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
   gap: 1.2rem;
   align-items: start;
-  padding: 1.5rem 1rem 2rem;
+  padding: 1.5rem 0.5rem 2rem;
   min-height: 100vh;
 }
 

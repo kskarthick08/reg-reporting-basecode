@@ -212,6 +212,22 @@ export function AppShell({
                 </div>
               </div>
 
+              {(workflowName || stageLabel || statusSignal) && (
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Workflow</span>
+                  {workflowName ? <strong className="text-foreground">{workflowName}</strong> : null}
+                  {stageLabel ? <span className="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">{stageLabel}</span> : null}
+                  {statusSignal ? (
+                    <span className={`flex items-center gap-2 px-3 py-1 text-xs font-bold rounded-full ${
+                      statusSignal.tone === "running" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                    }`}>
+                      <span className={`w-2 h-2 rounded-full ${statusSignal.tone === "running" ? "bg-blue-500 animate-pulse" : "bg-gray-400"}`} />
+                      {statusSignal.label}
+                    </span>
+                  ) : null}
+                </div>
+              )}
+
               <div className="flex-1 min-w-0">
                 <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{title}</h1>
                 {subtitle ? <p className="text-sm text-muted-foreground mt-1">{subtitle}</p> : null}
@@ -224,22 +240,6 @@ export function AppShell({
               {backendStatusText}
             </div>
           ) : null}
-
-          {(workflowName || stageLabel || statusSignal) && (
-            <div className="px-4 lg:px-6 py-3 bg-muted/50 border-t border-border flex flex-wrap items-center gap-3">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Workflow</span>
-              {workflowName ? <strong className="text-foreground">{workflowName}</strong> : null}
-              {stageLabel ? <span className="px-2 py-1 text-xs font-medium rounded-full bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">{stageLabel}</span> : null}
-              {statusSignal ? (
-                <span className={`flex items-center gap-2 px-3 py-1 text-xs font-bold rounded-full ${
-                  statusSignal.tone === "running" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400" : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                }`}>
-                  <span className={`w-2 h-2 rounded-full ${statusSignal.tone === "running" ? "bg-blue-500 animate-pulse" : "bg-gray-400"}`} />
-                  {statusSignal.label}
-                </span>
-              ) : null}
-            </div>
-          )}
         </header>
 
         {summaryBar ? <div className="bg-card rounded-xl shadow-lg border border-border p-4">{summaryBar}</div> : null}
