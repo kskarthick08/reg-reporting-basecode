@@ -284,7 +284,7 @@ export function WorkbenchDashboard({ state, actions, derived, projectJobs }: Pro
         }
         statusSignal={currentWorkflowActiveJobs.length > 0 ? { label: `${currentWorkflowActiveJobs.length} running`, tone: "running" } : undefined}
       >
-        <main className="dashboard-main">
+        <main className="dashboard-main" style={{ padding: '0.35rem 0 2rem' }}>
           <section className="panel stage-ops-banner">
             <div className="stage-ops-banner__copy">
               <div className="stage-ops-banner__eyebrow">Workflow Summary</div>

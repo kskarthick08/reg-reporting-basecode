@@ -75,7 +75,7 @@ export function AppShell({
   );
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row gap-4 p-3 lg:p-6 max-w-[1920px] mx-auto">
+    <div className="min-h-screen flex flex-col lg:flex-row gap-4 p-2 lg:p-4">
       <aside className="w-full lg:w-64 flex-shrink-0 bg-card rounded-xl shadow-xl border border-border overflow-hidden">
         <div className="p-6 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-b border-border">
           <div className="flex items-center gap-3 mb-2">
@@ -243,7 +243,7 @@ export function AppShell({
         </header>
 
         {summaryBar ? <div className="bg-card rounded-xl shadow-lg border border-border p-4">{summaryBar}</div> : null}
-        <div className="flex-1 bg-card rounded-xl shadow-lg border border-border p-4 lg:p-6 overflow-auto">{children}</div>
+        <div className="flex-1 bg-card rounded-xl shadow-lg border border-border overflow-auto">{children}</div>
       </div>
     </div>
   );

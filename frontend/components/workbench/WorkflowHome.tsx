@@ -206,8 +206,7 @@ export function WorkflowHome({
   const spotlightWorkflow = grouped.attention[0] || roleStageItems[0] || crossStageItems[0] || filtered[0] || null;
 
   return (
-    <>
-      <AppShell
+    <AppShell
         title={showJobCenter ? "Active Jobs" : `${persona} Workspace`}
         subtitle="Manage your queue, create new work, and keep background jobs visible."
         backLabel="Back to Role Select"
@@ -239,7 +238,7 @@ export function WorkflowHome({
           />
         }
       >
-        <main className="dashboard-main workflow-home-main">
+        <main className="dashboard-main workflow-home-main" style={{ padding: '0.35rem 0 2rem' }}>
           {showJobCenter ? (
             <GlobalJobCenter jobs={projectJobs} title={`${persona} Active Jobs`} emptyLabel="No jobs are running for this role." />
           ) : (
@@ -402,8 +401,7 @@ export function WorkflowHome({
             </>
           )}
         </main>
-      </AppShell>
-
+      
       <CreateWorkflowVersionModal
         open={Boolean(versionWorkflow)}
         workflow={versionWorkflow}
@@ -464,6 +462,6 @@ export function WorkflowHome({
           </Card>
         </div>
       )}
-    </>
+    </AppShell>
   );
 }

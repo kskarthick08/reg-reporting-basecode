@@ -250,7 +250,7 @@ body::after {
 .dashboard-shell.regai-wrap,
 .admin-shell,
 .analytics-dashboard {
-  width: min(1320px, calc(100% - 3rem));
+  width: 100%;
   margin: 0 auto;
   padding: 0 1rem;
 }
