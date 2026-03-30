@@ -198,25 +198,28 @@ export function WorkbenchInsights({
       {actionPanel}
 
       {showSecondaryInsights && (
-        <details className="advanced-block insight-collapse">
-          <summary>Workflow Audit Trail ({auditTrail.length})</summary>
-          <section className="audit-section">
-            <div className="audit-panel">
-              <div className="audit-timeline">
-                {auditTrail.length === 0 ? (
-                  <div className="empty-audit">No activity yet.</div>
-                ) : (
-                  auditTrail.map((item) => (
-                    <div className="audit-item" key={item.id}>
-                      <div className={`audit-dot ${item.level === "success" ? "teal" : item.level === "warn" ? "amber" : ""}`} />
-                      <div className="audit-time">{item.at}</div>
-                      <div className="audit-msg">{item.text}</div>
-                    </div>
-                  ))
-                )}
-              </div>
+        <details className="workflow-action-section" open>
+          <summary className="workflow-action-section__summary">
+            <div>
+              <div className="workflow-action-section__title">Workflow Audit Trail ({auditTrail.length})</div>
+              <div className="workflow-action-section__subtitle">Activity history for this workflow session.</div>
             </div>
-          </section>
+          </summary>
+          <div className="workflow-action-section__body">
+            <div className="audit-timeline">
+              {auditTrail.length === 0 ? (
+                <div className="workflow-empty">No activity yet.</div>
+              ) : (
+                auditTrail.map((item) => (
+                  <div className="audit-item" key={item.id}>
+                    <div className={`audit-dot ${item.level === "success" ? "teal" : item.level === "warn" ? "amber" : ""}`} />
+                    <div className="audit-time">{item.at}</div>
+                    <div className="audit-msg">{item.text}</div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </details>
       )}
 

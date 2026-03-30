@@ -1261,6 +1261,10 @@ select:focus,
 .dashboard-main {
   display: grid;
   gap: 0.95rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .workflow-create-panel,
@@ -1272,6 +1276,10 @@ select:focus,
 .workflow-home-main {
   display: grid;
   gap: 0.95rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .workflow-home-command-grid {
@@ -1549,6 +1557,9 @@ select:focus,
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .workflow-board-column {
