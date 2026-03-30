@@ -361,7 +361,7 @@ export function WorkflowActionPanel({
         </>
       ) : (
         <>
-          <div className="workflow-action-hero">
+          <div className="workflow-action-stage-transition">
             <div className="workflow-action-hero__summary">
               <div className="workflow-action-bar__eyebrow">Stage Transition</div>
               <div className="workflow-action-bar__title">{primaryActionLabel}</div>
@@ -379,128 +379,136 @@ export function WorkflowActionPanel({
                 {degraded && <span className="workflow-action-chip warn">Degraded quality</span>}
               </div>
             </div>
-            <div className="workflow-action-hero__actions">
-              <button
-                className={`invoke-btn workflow-final-btn btn-with-icon ${submitDisabled ? "is-blocked" : ""}`}
-                onClick={handleOpenSubmitConfirm}
-                disabled={workflowBusy}
-                aria-disabled={submitDisabled}
-                title={submitDisabled ? nextActionHint : primaryActionLabel}
-              >
-                <ActionIcon name="submit" className="action-icon" />
-                {primaryActionLabel}
-              </button>
-              <div className={`workflow-next-step ${submitDisabled ? "warn" : "ready"}`}>{nextActionHint}</div>
-              {submitDisabled && isPendingForMe && (
-                <div className="workflow-submit-warning" role="alert">
-                  <strong>Warning:</strong> {nextActionHint}
-                </div>
-              )}
-              {activeAgentTab === "dev" && (
-                <div className="workflow-action-group">
-                  <div className="workflow-action-group__label">Publish DEV deliverables</div>
-                  <div className="workflow-primary-actions">
-                    <button
-                      className="secondary-btn workflow-save-btn"
-                      onClick={() => publishToGitHub("generated_sql")}
-                      disabled={workflowBusy || !workflow?.latest_sql_run_id || publishBusy !== ""}
-                    >
-                      {publishBusy === "generated_sql" ? "Publishing SQL..." : "Publish SQL"}
-                    </button>
-                    <button
-                      className="secondary-btn workflow-save-btn"
-                      onClick={() => publishToGitHub("report_xml")}
-                      disabled={workflowBusy || !workflow?.latest_report_xml_artifact_id || publishBusy !== ""}
-                    >
-                      {publishBusy === "report_xml" ? "Publishing XML..." : "Publish XML"}
-                    </button>
-                  </div>
-                </div>
-              )}
-              {activeAgentTab === "rev" && (
-                <div className="workflow-action-group">
-                  <div className="workflow-action-group__label">Publish reviewer output</div>
-                  <div className="workflow-primary-actions">
-                    <button
-                      className="secondary-btn workflow-save-btn workflow-save-btn--wide"
-                      onClick={() => publishToGitHub("report_xml")}
-                      disabled={workflowBusy || !workflow?.latest_report_xml_artifact_id || !gatePassed || publishBusy !== ""}
-                      title={!gatePassed ? "XML can be published only when the review gate passes." : "Publish validated XML"}
-                    >
-                      {publishBusy === "report_xml" ? "Publishing XML..." : "Publish XML"}
-                    </button>
-                  </div>
-                </div>
-              )}
-              <div className="workflow-action-buttons workflow-action-buttons-compact workflow-support-actions">
-                <button
-                  className="secondary-btn workflow-support-btn"
-                  onClick={() => setShowSendBackModal(true)}
-                  disabled={workflowBusy || !["DEV", "REVIEWER"].includes(String(workflow?.current_stage || ""))}
-                >
-                  Send Back
-                </button>
-                <button className="secondary-btn btn-with-icon workflow-support-btn" onClick={() => setShowArtifactsModal(true)}>
-                  <ActionIcon name="artifacts" className="action-icon" />
-                  Artifacts
-                </button>
-              </div>
-            </div>
           </div>
 
-          <div className="workflow-action-sections">
-            <details className="workflow-action-section" open={openRequiredActions}>
-              <summary className="workflow-action-section__summary">
-                <div>
-                  <div className="workflow-action-section__title">Exit Check</div>
-                  <div className="workflow-action-section__subtitle">Only the final blockers and quality signals for this transition.</div>
+          <div className="workflow-action-split-layout">
+            <div className="workflow-action-split-left">
+              <details className="workflow-action-section" open={openRequiredActions}>
+                <summary className="workflow-action-section__summary">
+                  <div>
+                    <div className="workflow-action-section__title">Exit Check</div>
+                    <div className="workflow-action-section__subtitle">Only the final blockers and quality signals for this transition.</div>
+                  </div>
+                  <span className={`panel-badge ${gatePassed ? "badge-teal" : "badge-amber"}`}>{gatePassed ? "Ready" : "Attention"}</span>
+                </summary>
+                <div className="workflow-action-section__body">
+                  <div className="workflow-transition-brief">
+                    <div className="workflow-transition-brief__item">
+                      <span>Transition</span>
+                      <strong>{stage || "-"} to {nextStage}</strong>
+                    </div>
+                    <div className="workflow-transition-brief__item">
+                      <span>Owner</span>
+                      <strong>{ownershipLabel}</strong>
+                    </div>
+                    <div className="workflow-transition-brief__item">
+                      <span>Issues</span>
+                      <strong>{openIssuesCount}</strong>
+                    </div>
+                  </div>
+                  {gate?.message && <div className="project-message workflow-action-message">{gate.message}</div>}
+                  {degradedReasons.length > 0 && <div className="project-message workflow-action-message">Degraded reasons: {degradedReasons.join(", ")}</div>}
                 </div>
-                <span className={`panel-badge ${gatePassed ? "badge-teal" : "badge-amber"}`}>{gatePassed ? "Ready" : "Attention"}</span>
-              </summary>
-              <div className="workflow-action-section__body">
-                <div className="workflow-transition-brief">
-                  <div className="workflow-transition-brief__item">
-                    <span>Transition</span>
-                    <strong>{stage || "-"} to {nextStage}</strong>
-                  </div>
-                  <div className="workflow-transition-brief__item">
-                    <span>Owner</span>
-                    <strong>{ownershipLabel}</strong>
-                  </div>
-                  <div className="workflow-transition-brief__item">
-                    <span>Issues</span>
-                    <strong>{openIssuesCount}</strong>
-                  </div>
-                </div>
-                {gate?.message && <div className="project-message workflow-action-message">{gate.message}</div>}
-                {degradedReasons.length > 0 && <div className="project-message workflow-action-message">Degraded reasons: {degradedReasons.join(", ")}</div>}
-              </div>
-            </details>
+              </details>
 
-            <details className="workflow-action-section" open>
-              <summary className="workflow-action-section__summary">
-                <div>
-                  <div className="workflow-action-section__title">Deliverables</div>
-                  <div className="workflow-action-section__subtitle">
-                    Publish, download, or inspect the current handoff asset from here.
+              <details className="workflow-action-section" open>
+                <summary className="workflow-action-section__summary">
+                  <div>
+                    <div className="workflow-action-section__title">Deliverables</div>
+                    <div className="workflow-action-section__subtitle">
+                      Publish, download, or inspect the current handoff asset from here.
+                    </div>
+                  </div>
+                </summary>
+                <div className="workflow-action-section__body">
+                  <div className="workflow-deliverable-highlight">
+                    <span>Current handoff asset</span>
+                    <strong>{compactDeliverableSummary}</strong>
+                  </div>
+                  {message && <div className="project-message workflow-action-message">{message}</div>}
+                  {publishMessage && <div className="project-message workflow-action-message">{publishMessage}</div>}
+                  <div className="workflow-action-buttons workflow-action-buttons-compact workflow-support-actions">
+                    <button className="secondary-btn btn-with-icon workflow-support-btn" onClick={() => setShowArtifactsModal(true)}>
+                      <ActionIcon name="artifacts" className="action-icon" />
+                      View linked artifacts
+                    </button>
                   </div>
                 </div>
-              </summary>
-              <div className="workflow-action-section__body">
-                <div className="workflow-deliverable-highlight">
-                  <span>Current handoff asset</span>
-                  <strong>{compactDeliverableSummary}</strong>
-                </div>
-                {message && <div className="project-message workflow-action-message">{message}</div>}
-                {publishMessage && <div className="project-message workflow-action-message">{publishMessage}</div>}
+              </details>
+            </div>
+
+            <div className="workflow-action-split-right">
+              <div className="workflow-action-right-panel">
+                <button
+                  className={`invoke-btn workflow-final-btn btn-with-icon ${submitDisabled ? "is-blocked" : ""}`}
+                  onClick={handleOpenSubmitConfirm}
+                  disabled={workflowBusy}
+                  aria-disabled={submitDisabled}
+                  title={submitDisabled ? nextActionHint : primaryActionLabel}
+                >
+                  <ActionIcon name="submit" className="action-icon" />
+                  {primaryActionLabel}
+                </button>
+                <div className={`workflow-next-step ${submitDisabled ? "warn" : "ready"}`}>{nextActionHint}</div>
+                {submitDisabled && isPendingForMe && (
+                  <div className="workflow-submit-warning" role="alert">
+                    <strong>Warning:</strong> {nextActionHint}
+                  </div>
+                )}
+
+                {activeAgentTab === "dev" && (
+                  <div className="workflow-action-group">
+                    <div className="workflow-action-group__label">Publish DEV deliverables</div>
+                    <div className="workflow-primary-actions">
+                      <button
+                        className="secondary-btn workflow-save-btn"
+                        onClick={() => publishToGitHub("generated_sql")}
+                        disabled={workflowBusy || !workflow?.latest_sql_run_id || publishBusy !== ""}
+                      >
+                        {publishBusy === "generated_sql" ? "Publishing SQL..." : "Publish SQL"}
+                      </button>
+                      <button
+                        className="secondary-btn workflow-save-btn"
+                        onClick={() => publishToGitHub("report_xml")}
+                        disabled={workflowBusy || !workflow?.latest_report_xml_artifact_id || publishBusy !== ""}
+                      >
+                        {publishBusy === "report_xml" ? "Publishing XML..." : "Publish XML"}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {activeAgentTab === "rev" && (
+                  <div className="workflow-action-group">
+                    <div className="workflow-action-group__label">Publish reviewer output</div>
+                    <div className="workflow-primary-actions">
+                      <button
+                        className="secondary-btn workflow-save-btn workflow-save-btn--wide"
+                        onClick={() => publishToGitHub("report_xml")}
+                        disabled={workflowBusy || !workflow?.latest_report_xml_artifact_id || !gatePassed || publishBusy !== ""}
+                        title={!gatePassed ? "XML can be published only when the review gate passes." : "Publish validated XML"}
+                      >
+                        {publishBusy === "report_xml" ? "Publishing XML..." : "Publish XML"}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 <div className="workflow-action-buttons workflow-action-buttons-compact workflow-support-actions">
+                  <button
+                    className="secondary-btn workflow-support-btn"
+                    onClick={() => setShowSendBackModal(true)}
+                    disabled={workflowBusy || !["DEV", "REVIEWER"].includes(String(workflow?.current_stage || ""))}
+                  >
+                    Send Back
+                  </button>
                   <button className="secondary-btn btn-with-icon workflow-support-btn" onClick={() => setShowArtifactsModal(true)}>
                     <ActionIcon name="artifacts" className="action-icon" />
-                    View linked artifacts
+                    Artifacts
                   </button>
                 </div>
               </div>
-            </details>
+            </div>
           </div>
         </>
       )}

@@ -2,6 +2,7 @@ import { useRef } from "react";
 
 import { FileUploadZone } from "../FileUploadZone";
 import { StatusBadge } from "../StatusBadge";
+import { ActionIcon } from "./ActionIcon";
 import { artifactOptionLabel } from "./artifactLabels";
 import type { Artifact } from "./types";
 
@@ -325,6 +326,73 @@ export function DeveloperTab({
           </div>
         </div>
       )}
+      </div>
+
+      <section className="stage-persona-hero stage-persona-hero--transition">
+        <div className="stage-persona-hero__copy">
+          <div className="workflow-panel-eyebrow">Stage Transition</div>
+          <h3>Submit to Reviewer</h3>
+          <p>DEV to REVIEWER transition. Complete the XML package preparation to enable submission for quality validation.</p>
+        </div>
+        <div className="stage-persona-hero__status">
+          <StatusBadge status={xmlReady ? "done" : "idle"}>
+            {xmlReady ? "Ready for submission" : "Complete build steps first"}
+          </StatusBadge>
+        </div>
+        <div className="stage-persona-hero__signals">
+          <div className="stage-persona-signal">
+            <span>Build Status</span>
+            <strong>{xmlReady ? "Complete" : "In progress"}</strong>
+          </div>
+          <div className="stage-persona-signal">
+            <span>Handoff Asset</span>
+            <strong>{reportXmlArtifactName || "Pending"}</strong>
+          </div>
+          <div className="stage-persona-signal">
+            <span>Transition</span>
+            <strong>DEV → REVIEWER</strong>
+          </div>
+        </div>
+      </section>
+
+      <div className="stage-step">
+        <div className="step-title">Submit XML Package</div>
+        <div className="workflow-transition-brief">
+          <div className="workflow-transition-brief__item">
+            <span>Exit Check</span>
+            <strong>{xmlReady ? "Ready" : "In progress"}</strong>
+          </div>
+          <div className="workflow-transition-brief__item">
+            <span>Deliverable</span>
+            <strong>{reportXmlArtifactName || "Submission XML not generated yet"}</strong>
+          </div>
+          <div className="workflow-transition-brief__item">
+            <span>Next Owner</span>
+            <strong>Reviewer</strong>
+          </div>
+        </div>
+        {!xmlReady && (
+          <div className="project-message">
+            Generate submission XML to unlock submission to Reviewer.
+          </div>
+        )}
+        <div className="stage-actions-row">
+          <button className="invoke-btn btn-with-icon" disabled={formBusy || !xmlReady}>
+            <ActionIcon name="submit" className="action-icon" />
+            Submit to Reviewer
+          </button>
+        </div>
+        <div className="form-grid form-grid-two">
+          <button className="secondary-btn" disabled={formBusy || !sqlRunId}>
+            Save SQL Script
+          </button>
+          <button className="secondary-btn" disabled={formBusy || !xmlReady}>
+            Save XML Package
+          </button>
+        </div>
+        <p className="stage-note">
+          Submission will transition this workflow to the REVIEWER stage and assign validation tasks to the reviewer owner.
+        </p>
       </div>
     </section>
   );

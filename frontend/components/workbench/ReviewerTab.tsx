@@ -283,6 +283,80 @@ export function ReviewerTab({
         </div>
       )}
 
+      <section className="stage-persona-hero stage-persona-hero--transition">
+        <div className="stage-persona-hero__copy">
+          <div className="workflow-panel-eyebrow">Stage Transition</div>
+          <h3>Complete Workflow</h3>
+          <p>REVIEWER to COMPLETED transition. Run validation to assess quality, then complete the workflow for final approval.</p>
+        </div>
+        <div className="stage-persona-hero__status">
+          <StatusBadge status={xmlRunId ? "done" : "idle"}>
+            {xmlRunId ? "Ready for completion" : "Run validation first"}
+          </StatusBadge>
+        </div>
+        <div className="stage-persona-hero__signals">
+          <div className="stage-persona-signal">
+            <span>Validation Status</span>
+            <strong>{xmlValidation ? (xmlValidation.pass ? "PASS" : "Issues found") : "Pending"}</strong>
+          </div>
+          <div className="stage-persona-signal">
+            <span>Handoff Asset</span>
+            <strong>{reportXmlArtifactName || "Validated XML not available yet"}</strong>
+          </div>
+          <div className="stage-persona-signal">
+            <span>Transition</span>
+            <strong>REVIEWER → COMPLETED</strong>
+          </div>
+        </div>
+      </section>
+
+      <div className="stage-step">
+        <div className="step-title">Complete Workflow</div>
+        <div className="workflow-transition-brief">
+          <div className="workflow-transition-brief__item">
+            <span>Exit Check</span>
+            <strong>{xmlRunId && xmlValidation?.pass ? "Ready" : "Attention"}</strong>
+          </div>
+          <div className="workflow-transition-brief__item">
+            <span>Validation</span>
+            <strong>{xmlValidation ? (xmlValidation.pass ? "PASS" : "Issues") : "Pending"}</strong>
+          </div>
+          <div className="workflow-transition-brief__item">
+            <span>Next Status</span>
+            <strong>Completed</strong>
+          </div>
+        </div>
+        {!xmlRunId && (
+          <div className="project-message">
+            Run XML validation before completing the workflow.
+          </div>
+        )}
+        {xmlValidation && !xmlValidation.pass && (
+          <div className="project-message">
+            Validation found issues. Review and address before completion.
+          </div>
+        )}
+        <div className="stage-actions-row">
+          <button className="invoke-btn btn-with-icon" disabled={busy || !xmlRunId || readOnly}>
+            <ActionIcon name="submit" className="action-icon" />
+            Complete Workflow
+          </button>
+        </div>
+        {xmlRunId && (
+          <div className="form-grid form-grid-two">
+            <button className="secondary-btn" disabled={busy || readOnly}>
+              Save Validation Report
+            </button>
+            <button className="secondary-btn" disabled={busy || !xmlValidation?.pass || readOnly}>
+              Publish Validated XML
+            </button>
+          </div>
+        )}
+        <p className="stage-note">
+          Completion will mark this workflow as finished and archive the validated submission package for final regulatory use.
+        </p>
+      </div>
+
     </section>
   );
 }
