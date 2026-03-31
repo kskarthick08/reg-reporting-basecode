@@ -242,10 +242,18 @@ export function WorkflowHome({
           ) : (
             <>
               <section className="workflow-home-hero panel">
-                <div className="workflow-home-hero__copy">
-                  <div className="workflow-panel-eyebrow">Portfolio overview</div>
-                  <h2>Workflow Queue</h2>
-                  <p>Track active work, surface blockers quickly, and keep the next handoff moving.</p>
+                <div className="flex justify-between items-start gap-4 mb-6">
+                  <div className="workflow-home-hero__copy">
+                    <div className="workflow-panel-eyebrow">Portfolio overview</div>
+                    <h2>Workflow Queue</h2>
+                    <p>Track active work, surface blockers quickly, and keep the next handoff moving.</p>
+                  </div>
+                  {persona === "BA" && (
+                    <Button className="gap-2 shrink-0" onClick={() => setShowCreateModal(true)} disabled={workflowBusy}>
+                      <ActionIcon name="start" className="action-icon h-4 w-4" />
+                      Launch Workflow
+                    </Button>
+                  )}
                 </div>
                 <div className="workflow-home-hero__stats">
                   <div className="workflow-hero-stat workflow-hero-stat--attention">
@@ -283,15 +291,6 @@ export function WorkflowHome({
                     <strong>{projectLabel(projectId)}</strong>
                   </div>
                 </div>
-
-                {persona === "BA" && (
-                  <div className="flex justify-center mt-6">
-                    <Button className="gap-2" onClick={() => setShowCreateModal(true)} disabled={workflowBusy}>
-                      <ActionIcon name="start" className="action-icon h-4 w-4" />
-                      Launch Workflow
-                    </Button>
-                  </div>
-                )}
               </section>
 
               <section className="panel workflow-queue-panel workflow-queue-panel--board">
