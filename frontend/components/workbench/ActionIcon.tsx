@@ -1,4 +1,4 @@
-type ActionIconName =
+ type ActionIconName =
   | "back"
   | "refresh"
   | "admin"
