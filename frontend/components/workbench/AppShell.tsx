@@ -56,6 +56,7 @@ export function AppShell({
 }: AppShellProps) {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [expandedNav, setExpandedNav] = useState<string | null>(null);
+  const [notificationOpen, setNotificationOpen] = useState(false);
   const projectOptions = projectOptionsWithCurrent(projectId);
 
   useEffect(() => {
@@ -80,14 +81,17 @@ export function AppShell({
     <div className="min-h-screen flex flex-col lg:flex-row gap-4 p-2 lg:p-4">
       <aside className="w-full lg:w-64 flex-shrink-0 bg-card rounded-xl shadow-xl border border-border overflow-hidden">
         <div className="p-6 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-b border-border">
-          <div className="flex items-center gap-3 mb-2">
-            <img className="w-10 h-10" src="/brand/regai-logo-mark.svg" alt="Reg Reporting AI logo mark" width={40} height={40} />
-            <div className="flex flex-col">
-              <span className="text-xs font-semibold text-primary uppercase tracking-wider">Reg Reporting AI</span>
-              <h2 className="text-lg font-bold text-foreground">Workflow Workbench</h2>
+          <div className="flex flex-col gap-3">
+            <img 
+              src="/brand/GlobalLogo_NTTDATA_FutureBlue_RGB.png" 
+              alt="NTT DATA logo" 
+              style={{ width: 'auto', height: '45px', maxWidth: '100%', objectFit: 'contain' }}
+            />
+            <div className="flex flex-col gap-1">
+              <h2 className="text-sm font-bold text-foreground">Regulatory Compliance Workbench</h2>
+              <p className="text-xs text-muted-foreground">AI-assisted regulatory delivery</p>
             </div>
           </div>
-          <p className="text-xs text-muted-foreground mt-2">AI-assisted regulatory delivery</p>
         </div>
 
         <nav className="p-3 space-y-1" aria-label="Primary">
@@ -275,6 +279,55 @@ export function AppShell({
                 ) : null}
 
                   <div className="flex items-center gap-2">
+                    <details className="notification-center" open={notificationOpen}>
+                      <summary 
+                        className="notification-center__toggle" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setNotificationOpen(!notificationOpen);
+                        }}
+                      >
+                        <ActionIcon name="bell" className="action-icon w-5 h-5" />
+                        <span className="notification-center__badge">3</span>
+                      </summary>
+                      {notificationOpen && (
+                        <div className="notification-center__panel">
+                          <div className="notification-center__header">
+                            <div>
+                              <h3 className="notification-center__title">Notifications</h3>
+                              <p className="notification-center__subtitle">You have 3 unread messages</p>
+                            </div>
+                            <div className="notification-center__actions">
+                              <button className="mini-btn" type="button">Mark all read</button>
+                            </div>
+                          </div>
+                          <div className="notification-center__list">
+                            <button className="notification-center__item unread success" type="button">
+                              <span className="notification-center__dot"></span>
+                              <div className="notification-center__copy">
+                                <strong>Gap analysis completed</strong>
+                                <span>Your workflow is ready for review</span>
+                              </div>
+                            </button>
+                            <button className="notification-center__item unread info" type="button">
+                              <span className="notification-center__dot"></span>
+                              <div className="notification-center__copy">
+                                <strong>New artifact generated</strong>
+                                <span>SQL script has been created</span>
+                              </div>
+                            </button>
+                            <button className="notification-center__item unread error" type="button">
+                              <span className="notification-center__dot"></span>
+                              <div className="notification-center__copy">
+                                <strong>Validation failed</strong>
+                                <span>Please review the error details</span>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </details>
+
                     <button
                       className="flex items-center justify-center p-2 rounded-lg border border-border bg-background hover:bg-accent transition-colors"
                       onClick={toggleTheme}

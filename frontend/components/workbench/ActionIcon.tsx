@@ -22,6 +22,7 @@ type ActionIconName =
   | "submit"
   | "artifacts"
   | "notifications"
+  | "bell"
   | "sun"
   | "moon"
   | "system"
@@ -216,7 +217,7 @@ export function ActionIcon({ name, className }: ActionIconProps) {
       </svg>
     );
   }
-  if (name === "notifications") {
+  if (name === "notifications" || name === "bell") {
     return (
       <svg className={className} viewBox="0 0 16 16" aria-hidden="true">
         <path d="M8 2.5a3.5 3.5 0 0 0-3.5 3.5v1.4c0 .6-.18 1.18-.52 1.67L2.8 10.75h10.4L12.02 9.06A3.05 3.05 0 0 1 11.5 7.4V6A3.5 3.5 0 0 0 8 2.5Z" />

@@ -5,8 +5,8 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Reg Reporting AI",
-  description: "Local enterprise workflow for gap analysis, SQL, and XML outputs."
+  title: "NTT DATA Regulatory Compliance Workbench",
+  description: "AI-assisted regulatory reporting workflow platform for gap analysis, SQL generation, and XML validation."
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

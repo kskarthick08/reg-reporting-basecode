@@ -9,27 +9,17 @@ export function PersonaLogin({ onSelectPersona }: PersonaLoginProps) {
   return (
     <section className="panel persona-login-panel">
       <div className="persona-login-hero">
-        <img className="brand-logo-mark" src="/brand/regai-logo-mark.svg" alt="Reg Reporting AI logo mark" width={50} height={50} />
+        <img 
+          className="brand-logo-mark" 
+          src="/brand/GlobalLogo_NTTDATA_FutureBlue_RGB.png" 
+          alt="NTT DATA logo" 
+          style={{ width: 'auto', height: '60px', maxWidth: '280px', objectFit: 'contain' }}
+        />
         <div className="persona-login-copy">
           <div className="persona-login-kicker">AI-Assisted Regulatory Delivery</div>
           <div className="persona-login-brand">
-            <div className="persona-login-brand__name">Reg Reporting AI</div>
-            <div className="persona-login-brand__sub">Workflow Workbench</div>
-          </div>
-          <div className="project-message persona-login-message">Choose a workspace.</div>
-          <div className="persona-login-signals">
-            <span className="persona-login-signal">
-              <ActionIcon name="workflow" className="action-icon" />
-              Guided workflow stages
-            </span>
-            <span className="persona-login-signal">
-              <ActionIcon name="bot" className="action-icon" />
-              AI-assisted execution
-            </span>
-            <span className="persona-login-signal">
-              <ActionIcon name="check" className="action-icon" />
-              Audit-ready handoff
-            </span>
+            <div className="persona-login-brand__name">Regulatory Compliance Workbench</div>
+            <div className="persona-login-brand__sub">Intelligent Workflow Platform</div>
           </div>
         </div>
       </div>
