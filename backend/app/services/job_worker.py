@@ -9,12 +9,12 @@ from typing import Any, Callable, Dict
 from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
-from app.models_jobs import JobQueue
+from app.models import JobQueue
 from app.services import job_service
 from app.services.ba_gap_orchestration_service import execute_gap_analysis_core, execute_gap_remediation_core
 from app.services.sql_generation_service import generate_sql_core
 from app.services.xml_review_orchestration_service import execute_xml_generation, execute_xml_validation
-from app.workflow_job_schemas import GapAnalysisRequest, GapRemediationRequest, SqlGenerateRequest, XmlGenerateRequest, XmlValidateRequest
+from app.schemas import GapAnalysisRequest, GapRemediationRequest, SqlGenerateRequest, XmlGenerateRequest, XmlValidateRequest
 
 logger = logging.getLogger(__name__)
 

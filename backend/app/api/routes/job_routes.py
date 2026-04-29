@@ -9,7 +9,7 @@ from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
-from app.deps import get_db
+from app.api.deps import get_db
 from app.services import job_service
 from app.services.job_worker import JOB_PROGRESS_STEPS, JOB_TYPE_HANDLERS, execute_job_with_progress
 

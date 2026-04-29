@@ -6,8 +6,8 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+from app.api.deps import get_db
 from app.config import settings
-from app.db import SessionLocal
 from app.models import AnalysisRun, Artifact, Workflow, WorkflowStageHistory
 from app.paths import ARTIFACT_ROOT
 from app.schemas import WorkflowDetailResponse, WorkflowListResponse, WorkflowQualitySummaryResponse, WorkflowResponseEnvelope
@@ -33,15 +33,6 @@ from app.services.workflow_service import (
 from app.services.workflow_gates import evaluate_stage_exit_gate
 
 router = APIRouter()
-
-
-def get_db():
-    """Yield a database session for request handlers."""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 class WorkflowCreateRequest(BaseModel):

@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.config import settings
-from app.deps import get_db, record_admin_audit, verify_admin
+from app.api.deps import get_db, record_admin_audit, verify_admin
 from app.models import AnalysisRun, Artifact, Workflow
 from app.services.github_integration_service import (
     get_github_config,

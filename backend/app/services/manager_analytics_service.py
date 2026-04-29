@@ -7,7 +7,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Query, Session
 
 from app.models import AnalysisRun, Artifact, Workflow, WorkflowStageHistory
-from app.models_logging import WorkflowActionLog
+from app.models import WorkflowActionLog
 
 GENERATED_ARTIFACT_KINDS = {"generated_sql", "generated_xml", "functional_spec"}
 

@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, Query, Request
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from app.deps import get_db, record_admin_audit, verify_admin
+from app.api.deps import get_db, record_admin_audit, verify_admin
 from app.services.gate_config_service import (
     get_all_gate_configs,
     get_gate_config,

@@ -11,7 +11,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from app.deps import get_db
+from app.api.deps import get_db
 from app.models import Workflow
 from app.services.logging_service import (
     format_system_audit_log_as_text,
@@ -117,7 +117,7 @@ def get_workflow_action_logs(
     ]
 
     # Get total count for pagination
-    from app.models_logging import WorkflowActionLog
+    from app.models import WorkflowActionLog
 
     total_count = (
         db.query(WorkflowActionLog).filter(WorkflowActionLog.workflow_id == workflow_id).count()
@@ -251,7 +251,7 @@ def get_system_audit_log_entries(
     ]
 
     # Get total count for pagination
-    from app.models_logging import SystemAuditLog
+    from app.models import SystemAuditLog
 
     query = db.query(SystemAuditLog)
     if project_id:

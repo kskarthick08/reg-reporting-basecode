@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.constants import AGENT_DEFAULT_PROMPTS
-from app.deps import active_instruction
+from app.api.deps import active_instruction
 from app.models import AnalysisRun, Artifact, Workflow, WorkflowStageHistory
 from app.paths import ARTIFACT_ROOT
 from app.services.artifact_naming_service import build_generated_artifact_display_name, build_generated_artifact_filename

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
-from app.deps import get_db
+from app.api.deps import get_db
 from app.models import RagChunk
 from app.services.vector_service import embedding_for_text, search_rag_chunks
 

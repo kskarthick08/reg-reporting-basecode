@@ -9,7 +9,7 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
-from app.models_logging import SystemAuditLog, WorkflowActionLog
+from app.models import SystemAuditLog, WorkflowActionLog
 from app.services.workflow_action_log_utils import (
     normalize_action_category,
     normalize_action_type,
@@ -69,7 +69,8 @@ def log_workflow_action(
         duration_ms=duration_ms,
     )
     db.add(log_entry)
-    db.flush()  # Get ID without committing
+    if hasattr(db, "flush"):
+        db.flush()  # Get ID without committing
     return log_entry
 
 

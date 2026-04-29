@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-from pathlib import Path
 from urllib.parse import urlparse
 
 import httpx
-from alembic import command
-from alembic.config import Config
 from sqlalchemy import inspect, text
 from sqlalchemy.engine import URL, make_url
 
@@ -13,8 +10,6 @@ from app.config import settings
 from app.db import engine
 from app.models import Base
 from app.services.runtime.state import build_troubleshooting_steps, get_startup_state
-
-BACKEND_ROOT = Path(__file__).resolve().parents[3]
 
 
 def mask_connection_url(raw_url: str) -> str:
@@ -159,15 +154,17 @@ def ensure_rag_chunk_embedding_column() -> dict:
                     """
                 )
             )
-            conn.execute(
-                text(
-                    """
-                    CREATE INDEX IF NOT EXISTS ix_rag_chunks_embedding_ivfflat
-                    ON rag_chunks USING ivfflat (embedding vector_cosine_ops)
-                    WITH (lists = 100)
-                    """
+            row_count = int(conn.execute(text("SELECT COUNT(*) FROM rag_chunks")).scalar() or 0)
+            if row_count >= 100:
+                conn.execute(
+                    text(
+                        """
+                        CREATE INDEX IF NOT EXISTS ix_rag_chunks_embedding_ivfflat
+                        ON rag_chunks USING ivfflat (embedding vector_cosine_ops)
+                        WITH (lists = 100)
+                        """
+                    )
                 )
-            )
 
         result["aligned"] = True
         result["installed"] = True
@@ -177,17 +174,6 @@ def ensure_rag_chunk_embedding_column() -> dict:
         result["detail"] = "rag_chunks.embedding could not be aligned to pgvector automatically."
         result["troubleshooting"] = build_troubleshooting_steps("pgvector")
     return result
-
-
-def run_database_migrations() -> dict:
-    """Handle run database migrations within the service layer."""
-    cfg = Config(str(BACKEND_ROOT / "alembic.ini"))
-    cfg.set_main_option("sqlalchemy.url", settings.database_url)
-    try:
-        command.upgrade(cfg, "head")
-        return {"ran": True, "ok": True, "detail": "Alembic migrations applied."}
-    except Exception as exc:
-        return {"ran": True, "ok": False, "error": str(exc), "troubleshooting": build_troubleshooting_steps("migrations")}
 
 
 def ensure_schema_tables() -> dict:

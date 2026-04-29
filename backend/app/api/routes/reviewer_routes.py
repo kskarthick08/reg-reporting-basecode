@@ -7,7 +7,7 @@ from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException
 from fastapi.responses import FileResponse, StreamingResponse
 from sqlalchemy.orm import Session
 
-from app.deps import get_db
+from app.api.deps import get_db
 from app.models import AnalysisRun, Artifact
 from app.services.logging_service import log_workflow_action
 from app.services.workflow_action_log_utils import (
@@ -15,7 +15,7 @@ from app.services.workflow_action_log_utils import (
     workflow_action_log_details,
 )
 from app.services.xml_review_orchestration_service import execute_xml_generation, execute_xml_validation
-from app.workflow_job_schemas import XmlGenerateRequest, XmlValidateRequest
+from app.schemas import XmlGenerateRequest, XmlValidateRequest
 
 router = APIRouter()
 
@@ -33,7 +33,7 @@ async def generate_xml_async(
     db: Session = Depends(get_db),
 ):
     """Asynchronous XML generation - returns immediately with job_id."""
-    from app.routes.job_routes import start_background_job
+    from app.api.routes.job_routes import start_background_job
     
     job_id = start_background_job(
         background_tasks=background_tasks,
@@ -65,7 +65,7 @@ async def validate_uploaded_xml_async(
     db: Session = Depends(get_db),
 ):
     """Asynchronous XML validation - returns immediately with job_id."""
-    from app.routes.job_routes import start_background_job
+    from app.api.routes.job_routes import start_background_job
     
     job_id = start_background_job(
         background_tasks=background_tasks,

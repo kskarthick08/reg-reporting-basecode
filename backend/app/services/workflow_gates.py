@@ -4,7 +4,7 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from app.models import AnalysisRun, Artifact, Workflow
-from app.models_gate_config import GateConfiguration
+from app.models import GateConfiguration
 from app.services.workflow_provenance_service import functional_spec_gap_run_id, validation_matches_current_xml
 
 HARD_GATE_CODES_BY_STAGE = {
@@ -169,7 +169,8 @@ def evaluate_dev_exit(
             code="dev_sql_run_missing",
             message="A completed SQL generation run is required before submission.",
         )
-    sql_gap_run_id = (sql_run.input_json or {}).get("gap_run_id") if isinstance(sql_run.input_json, dict) else None
+    sql_input = getattr(sql_run, "input_json", None)
+    sql_gap_run_id = (sql_input or {}).get("gap_run_id") if isinstance(sql_input, dict) else None
     try:
         sql_gap_run_id = int(sql_gap_run_id) if sql_gap_run_id is not None else None
     except (TypeError, ValueError):
@@ -242,7 +243,9 @@ def evaluate_reviewer_exit(
             code="review_validation_missing",
             message="XML validation must be executed before submission.",
         )
-    if workflow.latest_report_xml_artifact_id and not validation_matches_current_xml(workflow, xml_validation_run):
+    validation_output = getattr(xml_validation_run, "output_json", None)
+    has_validation_artifact_id = isinstance(validation_output, dict) and validation_output.get("report_xml_artifact_id") is not None
+    if workflow.latest_report_xml_artifact_id and has_validation_artifact_id and not validation_matches_current_xml(workflow, xml_validation_run):
         return GateResult(
             passed=False,
             code="review_validation_stale_for_xml",

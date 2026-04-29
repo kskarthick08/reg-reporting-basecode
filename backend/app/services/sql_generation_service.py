@@ -6,7 +6,7 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 from app.constants import AGENT_DEFAULT_PROMPTS
-from app.deps import active_instruction
+from app.api.deps import active_instruction
 from app.models import AnalysisRun, Artifact, Workflow, WorkflowStageHistory
 from app.paths import ARTIFACT_ROOT
 from app.services.artifact_naming_service import (
@@ -28,7 +28,7 @@ from app.services.sql_service import (
 )
 from app.services.workflow_access_service import assert_workflow_stage_access
 from app.services.workflow_provenance_service import ensure_gap_run_is_current_for_workflow
-from app.workflow_job_schemas import SqlGenerateRequest
+from app.schemas import SqlGenerateRequest
 
 
 async def generate_sql_core(req: SqlGenerateRequest, db: Session) -> dict:

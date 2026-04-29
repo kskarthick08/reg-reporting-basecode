@@ -1,4 +1,4 @@
-from app.routes.reviewer_routes import _build_rule_checks, _required_fields_from_psd_text
+from app.services.xml_review_orchestration_service import _build_rule_checks, _required_fields_from_psd_text
 
 
 def test_required_fields_extraction_is_stable():

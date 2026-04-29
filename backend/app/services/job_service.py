@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 
 from sqlalchemy.orm import Session
 
-from app.models_jobs import JobQueue
+from app.models import JobQueue
 
 
 def create_job(

@@ -6,7 +6,7 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
-from app.models_gate_config import GateConfiguration
+from app.models import GateConfiguration
 
 
 DEFAULT_GATE_CONFIGS = {

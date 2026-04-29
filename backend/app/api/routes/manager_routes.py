@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from app.db import SessionLocal
+from app.api.deps import get_db
 from app.services.manager_analytics_service import (
     calculate_cycle_times,
     calculate_dashboard_metrics,
@@ -21,15 +21,6 @@ from app.services.manager_analytics_service import (
 )
 
 router = APIRouter()
-
-
-def get_db():
-    """Yield a database session for request handlers."""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 class DashboardMetricsResponse(BaseModel):

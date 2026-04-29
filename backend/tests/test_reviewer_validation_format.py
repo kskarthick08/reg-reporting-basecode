@@ -1,4 +1,4 @@
-from app.routes.reviewer_routes import _parse_xsd_error, _structure_xsd_errors
+from app.services.xml_review_orchestration_service import _parse_xsd_error, _structure_xsd_errors
 
 
 def test_parse_xsd_error_extracts_path_and_enum_expectation():

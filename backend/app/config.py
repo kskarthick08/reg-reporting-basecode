@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     environment: str = "local"
     api_port: int = 8000
     database_url: str = "postgresql+psycopg://fca_user:fca_pass@postgres:5431/fca_app"
-    auto_run_migrations: bool = False
     auto_create_schema: bool = True
+    auto_apply_schema_patches: bool = True
     startup_probe_timeout_seconds: float = 3.0
     
     # Redis Configuration (Optional)

@@ -27,11 +27,11 @@ def build_troubleshooting_steps(topic: str) -> list[str]:
             "If using RDS, enable pgvector for the target instance and parameter group.",
             "Check /ready for degraded mode details before inviting users.",
         ]
-    if topic == "migrations":
+    if topic == "schema-patches":
         return [
-            "Run alembic upgrade head manually and inspect the first failing migration.",
+            "Review startup logs for the first failing schema patch.",
             "Confirm DATABASE_URL targets the intended environment before retrying startup.",
-            "Review startup logs for the exact migration error text.",
+            "Inspect app_schema_patches to see which schema patches were already applied.",
         ]
     if topic == "llm":
         return [

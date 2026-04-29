@@ -30,8 +30,8 @@ Windows EC2 is the wrong default for this repository:
 ## Shared Internal AWS Environment
 - run the frontend with `next build` and `next start`
 - run the backend with Uvicorn behind a reverse proxy
-- set `AUTO_CREATE_SCHEMA=false`
-- set `AUTO_RUN_MIGRATIONS=true` only in a controlled deploy step or release script
+- set `AUTO_CREATE_SCHEMA=false` if schema is provisioned separately, or `true` for first-time internal bootstrap
+- set `AUTO_APPLY_SCHEMA_PATCHES=true` so tracked idempotent schema patches run during startup
 - store secrets outside the repo and inject them at deploy time
 - restrict network access to corporate CIDR ranges, VPN, or internal load balancer paths
 - provision the target database through AWS infrastructure, not through application startup
@@ -54,7 +54,7 @@ The application currently stores uploaded and generated artifacts under `data/ar
 2. Provision one Linux EC2 instance in a restricted subnet or with restricted inbound rules.
 3. Install runtime dependencies for Python 3.11 and Node 18+.
 4. Place backend and frontend environment variables outside source control.
-5. Run database migrations before opening access to users.
+5. Start the backend once in a controlled deploy window and confirm `app_schema_patches` records all schema patches.
 6. Start backend and frontend processes under a service manager.
 7. Validate `/health` and `/ready` before sharing the URL.
 
@@ -64,7 +64,7 @@ The application currently stores uploaded and generated artifacts under `data/ar
 - `AXET_LLM_URL=<approved-llm-endpoint>`
 - `AXET_LLM_MODEL=<approved-model>`
 - `AUTO_CREATE_SCHEMA=false`
-- `AUTO_RUN_MIGRATIONS=true` for deploy-time migration execution, or run Alembic as a separate release step
+- `AUTO_APPLY_SCHEMA_PATCHES=true`
 
 ## Operational Notes
 - `/health` now reports startup state, database health, LLM availability, schema completeness, and `pgvector` status.

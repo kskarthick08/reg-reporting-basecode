@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.constants import AGENT_DEFAULT_PROMPTS
-from app.deps import active_instruction, get_db
+from app.api.deps import active_instruction, get_db
 from app.llm_client import call_axet_chat
 from app.models import AnalysisRun, Artifact
 from app.schemas import GapRowUpdateRequest
@@ -17,7 +17,7 @@ from app.services.ba_gap_orchestration_service import execute_gap_analysis_core,
 from app.services.context_service import artifact_context_text, extract_requirement_lines
 from app.services.llm_service import llm_content
 from app.services.logging_service import log_system_audit, log_workflow_action
-from app.workflow_job_schemas import GapAnalysisRequest, GapRemediationRequest
+from app.schemas import GapAnalysisRequest, GapRemediationRequest
 
 router = APIRouter()
 
@@ -176,7 +176,7 @@ async def run_gap_analysis_async(
     db: Session = Depends(get_db),
 ):
     """Asynchronous gap analysis - returns immediately with job_id."""
-    from app.routes.job_routes import start_background_job
+    from app.api.routes.job_routes import start_background_job
     
     job_id = start_background_job(
         background_tasks=background_tasks,
@@ -232,7 +232,7 @@ async def run_gap_remediation_async(
     db: Session = Depends(get_db),
 ):
     """Asynchronous gap remediation - returns immediately with job_id."""
-    from app.routes.job_routes import start_background_job
+    from app.api.routes.job_routes import start_background_job
     
     job_id = start_background_job(
         background_tasks=background_tasks,

@@ -5,7 +5,8 @@ from pathlib import Path
 
 from app.config import settings
 from app.db import SessionLocal
-from app.services.runtime.probes import ensure_pgvector_extension, ensure_rag_chunk_embedding_column, ensure_schema_tables, probe_database, run_database_migrations
+from app.services.runtime.probes import ensure_pgvector_extension, ensure_rag_chunk_embedding_column, ensure_schema_tables, probe_database
+from app.services.runtime.schema_patches import run_schema_patches
 from app.services.runtime.state import STARTUP_STATE, build_troubleshooting_steps, push_startup_step, reset_startup_state, utc_now_iso
 from app.services.vector_service import backfill_missing_embeddings
 
@@ -47,23 +48,6 @@ def run_startup_sequence(data_root: Path, artifact_root: Path) -> None:
     else:
         logger.info("Startup step complete step=pgvector installed=%s", vector_status.get("installed"))
 
-    if settings.auto_run_migrations:
-        migration_status = run_database_migrations()
-        migration_step_status = "ok" if migration_status.get("ok") else "failed"
-        push_startup_step("migrations", migration_step_status, migration_status.get("detail") or migration_status.get("error", ""))
-        if not migration_status.get("ok"):
-            STARTUP_STATE["state"] = "failed"
-            STARTUP_STATE["completed_at"] = utc_now_iso()
-            STARTUP_STATE["errors"].append(migration_status.get("error", "Migration failed."))
-            raise RuntimeError(
-                "Database migration failed: "
-                f"{migration_status.get('error', 'unknown error')}. Troubleshooting: "
-                f"{' | '.join(migration_status.get('troubleshooting', build_troubleshooting_steps('migrations')))}"
-            )
-        logger.info("Startup step complete step=migrations")
-    else:
-        push_startup_step("migrations", "skipped", "AUTO_RUN_MIGRATIONS is disabled.")
-
     if settings.auto_create_schema:
         schema_status = ensure_schema_tables()
         schema_step_status = "ok" if schema_status.get("ok") else "failed"
@@ -77,6 +61,24 @@ def run_startup_sequence(data_root: Path, artifact_root: Path) -> None:
         logger.info("Startup step complete step=schema-bootstrap missing_tables=%s", schema_status.get("missing_tables", []))
     else:
         push_startup_step("schema-bootstrap", "skipped", "AUTO_CREATE_SCHEMA is disabled.")
+
+    schema_patch_status = run_schema_patches()
+    schema_patch_step_status = "ok" if schema_patch_status.get("ok") else "failed"
+    push_startup_step("schema-patches", schema_patch_step_status, schema_patch_status.get("detail") or schema_patch_status.get("error", ""))
+    if not schema_patch_status.get("ok"):
+        STARTUP_STATE["state"] = "failed"
+        STARTUP_STATE["completed_at"] = utc_now_iso()
+        STARTUP_STATE["errors"].append(schema_patch_status.get("error", "Schema patching failed."))
+        raise RuntimeError(
+            "Database schema patching failed: "
+            f"{schema_patch_status.get('error', 'unknown error')}. Troubleshooting: "
+            f"{' | '.join(schema_patch_status.get('troubleshooting', build_troubleshooting_steps('schema-patches')))}"
+        )
+    logger.info(
+        "Startup step complete step=schema-patches applied=%s skipped=%s",
+        schema_patch_status.get("applied", []),
+        schema_patch_status.get("skipped", []),
+    )
 
     rag_vector_status = ensure_rag_chunk_embedding_column()
     rag_vector_step_status = "ok" if rag_vector_status.get("aligned") else "warn"

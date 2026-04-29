@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.constants import AGENT_DEFAULT_PROMPTS
-from app.deps import active_instruction, get_db, record_admin_audit, verify_admin
+from app.api.deps import active_instruction, get_db, record_admin_audit, verify_admin
 from app.models import AdminAuditLog, AgentInstruction, Workflow, WorkflowStageHistory
 from app.paths import SYNTHETIC_ROOT
 from app.services.workflow_service import workflow_display_id

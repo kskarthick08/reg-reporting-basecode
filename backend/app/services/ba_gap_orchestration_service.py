@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.constants import AGENT_DEFAULT_PROMPTS
-from app.deps import active_instruction
+from app.api.deps import active_instruction
 from app.mapping_rules import apply_mapping_rules, load_mapping_rules
 from app.models import AnalysisRun, Artifact
 from app.services.ba_gap_common import (

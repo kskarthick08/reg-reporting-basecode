@@ -12,7 +12,7 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
 from app.models import Artifact, Workflow
-from app.models_integration import GitHubIntegrationConfig
+from app.models import GitHubIntegrationConfig
 
 
 @dataclass

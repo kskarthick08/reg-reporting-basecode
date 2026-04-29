@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from app.deps import get_db
+from app.api.deps import get_db
 from app.models import AnalysisRun, Artifact, Workflow, WorkflowStageHistory
 from app.services.logging_service import log_workflow_action
 from app.services.workflow_provenance_service import ensure_report_xml_can_be_linked
@@ -13,7 +13,7 @@ from app.services.sql_generation_service import generate_sql_core
 from app.services.workflow_action_log_utils import resolve_workflow_for_run, workflow_action_log_details
 from app.services.workflow_access_service import assert_workflow_stage_access
 from app.services.xml_review_orchestration_service import execute_xml_generation
-from app.workflow_job_schemas import SqlGenerateRequest, XmlGenerateRequest
+from app.schemas import SqlGenerateRequest, XmlGenerateRequest
 
 router = APIRouter()
 
@@ -39,7 +39,7 @@ async def generate_sql_async(
     db: Session = Depends(get_db),
 ):
     """Asynchronous SQL generation - returns immediately with job_id."""
-    from app.routes.job_routes import start_background_job
+    from app.api.routes.job_routes import start_background_job
     
     job_id = start_background_job(
         background_tasks=background_tasks,
@@ -81,7 +81,7 @@ async def generate_report_xml_async(
     db: Session = Depends(get_db),
 ):
     """Generate the report XML async for the API response."""
-    from app.routes.job_routes import start_background_job
+    from app.api.routes.job_routes import start_background_job
 
     job_id = start_background_job(
         background_tasks=background_tasks,
