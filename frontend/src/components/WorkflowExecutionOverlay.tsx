@@ -3132,7 +3132,7 @@ export const WorkflowExecutionOverlay = ({ workflow, initialStepIndex, onClose, 
                                       showToast.dismiss(toastId);
                                       showToast.success(`Document "${file.name}" uploaded successfully!`);
                                       // Auto-select the newly uploaded document
-                                      setSelectedDoc1(uploadedDoc.id || uploadedDoc.document_id);
+                                      setSelectedDoc1(uploadedDoc.id || uploadedDoc.document_id || '');
                                       e.target.value = '';
                                     } catch (error) {
                                       console.error('Failed to upload document:', error);
@@ -3253,7 +3253,7 @@ export const WorkflowExecutionOverlay = ({ workflow, initialStepIndex, onClose, 
                                               showToast.dismiss(toastId);
                                               showToast.success(`Document "${file.name}" uploaded successfully!`);
                                               // Auto-select the newly uploaded document
-                                              setSelectedDoc2(uploadedDoc.id || uploadedDoc.document_id);
+                                              setSelectedDoc2(uploadedDoc.id || uploadedDoc.document_id || '');
                                               e.target.value = '';
                                             } catch (error) {
                                               console.error('Failed to upload document:', error);
