@@ -17,6 +17,7 @@ venv/
 
 # Frontend build/runtime
 frontend/node_modules/
+node_modules/
 frontend/.next/
 frontend/tsconfig.tsbuildinfo
 frontend/.env.local

@@ -1,0 +1,157 @@
+/* StageConfigurationPage.css */
+
+.stage-config-container {
+  padding: 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.stage-config-header {
+  margin-bottom: 2rem;
+}
+
+.stage-config-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.stage-config-subtitle {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.stage-config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.stage-config-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-config-card-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stage-config-enable-validation {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stage-config-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-config-loading {
+  text-align: center;
+  padding: 3rem;
+  flex: 1;
+}
+
+.stage-config-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.stage-config-settings-section {
+  flex: 1;
+}
+
+.stage-config-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.stage-config-fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stage-config-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.stage-config-field-label {
+  font-weight: 600;
+}
+
+.stage-config-field-description {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.stage-config-slider-field {
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.stage-config-slider-label {
+  font-weight: 600;
+}
+
+.stage-config-slider-description {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.stage-config-actions-wrapper {
+  display: flex;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: auto;
+}
+
+.stage-config-save-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+.stage-config-reset-btn {
+  flex: 1;
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+/* Stage-specific title colors */
+.stage-config-title-ba {
+  color: #f59e0b;
+}
+
+.stage-config-title-developer {
+  color: #8b5cf6;
+}
+
+.stage-config-title-reviewer {
+  color: #3b82f6;
+}

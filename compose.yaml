@@ -44,15 +44,15 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_BASE: http://localhost:${API_PORT:-8000}
+        VITE_API_URL: http://localhost:${API_PORT:-8000}/api
     container_name: fca-frontend
     depends_on:
       api:
         condition: service_healthy
     ports:
-      - "${FRONTEND_PORT:-3000}:3000"
+      - "${FRONTEND_PORT:-3000}:80"
     healthcheck:
-      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000').then((res) => process.exit(res.ok ? 0 : 1)).catch(() => process.exit(1))\""]
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null 2>&1 || exit 1"]
       interval: 15s
       timeout: 5s
       retries: 10

@@ -1,0 +1,186 @@
+/**
+ * Toggle Switch Alignment and Sizing Fixes
+ * Ensures toggle switches display properly in all contexts
+ */
+
+/* Base toggle switch sizing and positioning */
+button[role="switch"] {
+  width: 64px !important;
+  min-width: 64px !important;
+  max-width: 64px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+}
+
+/* Toggle switch thumb positioning */
+span[data-radix-switch-thumb] {
+  position: absolute !important;
+  top: 4px !important;
+  left: 0 !important;
+  width: 24px !important;
+  min-width: 24px !important;
+  max-width: 24px !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Wrapper div around toggle switch */
+button[role="switch"] + div,
+div:has(> button[role="switch"]) {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Toggle switch in flex containers with space-between */
+div[style*="justify-content: space-between"] button[role="switch"],
+div[style*="justifyContent: space-between"] button[role="switch"],
+.space-between button[role="switch"] {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Toggle switch in flex containers with specific alignment */
+div[style*="display: flex"] button[role="switch"],
+.flex button[role="switch"] {
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+/* Toggle switch next to labels */
+label + button[role="switch"],
+button[role="switch"] + label,
+span + button[role="switch"],
+button[role="switch"] + span {
+  margin-left: 0.5rem;
+}
+
+/* Toggle switch in cards */
+.card button[role="switch"],
+div[class*="card"] button[role="switch"],
+[class*="Card"] button[role="switch"] {
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* Toggle switch in form rows */
+.form-row button[role="switch"],
+.form-group button[role="switch"],
+div[style*="padding: 1rem"] button[role="switch"] {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* Toggle switch in settings pages */
+.settings button[role="switch"],
+.config button[role="switch"],
+[class*="settings"] button[role="switch"],
+[class*="config"] button[role="switch"] {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Ensure parent containers don't stretch the toggle */
+div:has(> button[role="switch"]) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Toggle switch in modals/overlays */
+div[role="dialog"] button[role="switch"],
+.modal button[role="switch"],
+.overlay button[role="switch"] {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* Fix for toggle switches in grid layouts */
+.grid button[role="switch"],
+div[style*="display: grid"] button[role="switch"] {
+  justify-self: end;
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  button[role="switch"] {
+    width: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    max-height: 28px !important;
+  }
+
+  span[data-radix-switch-thumb] {
+    width: 20px !important;
+    min-width: 20px !important;
+    max-width: 20px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
+  }
+
+  span[data-radix-switch-thumb][data-state="checked"] {
+    transform: translateX(28px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  button[role="switch"] {
+    width: 52px !important;
+    min-width: 52px !important;
+    max-width: 52px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+  }
+
+  span[data-radix-switch-thumb] {
+    width: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    height: 18px !important;
+    min-height: 18px !important;
+    max-height: 18px !important;
+  }
+
+  span[data-radix-switch-thumb][data-state="checked"] {
+    transform: translateX(26px) !important;
+  }
+}
+
+/* Prevent toggle from being squeezed */
+button[role="switch"]:not(:only-child) {
+  flex-basis: 64px;
+}
+
+/* Ensure toggle maintains size in all contexts */
+* button[role="switch"],
+button[role="switch"] * {
+  box-sizing: border-box !important;
+}
+
+/* Fix for specific page layouts */
+[class*="Stage"] button[role="switch"],
+[class*="Workflow"] button[role="switch"],
+[class*="Config"] button[role="switch"] {
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  width: 64px !important;
+  height: 32px !important;
+}

@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(9% 0.03 285.9);
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(9% 0.03 285.9);
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(9% 0.03 285.9);
+  --color-primary: oklch(22.6% 0.048 285.9);
+  --color-primary-foreground: oklch(97.8% 0.002 285.9);
+  --color-secondary: oklch(96.5% 0.002 285.9);
+  --color-secondary-foreground: oklch(22.6% 0.048 285.9);
+  --color-muted: oklch(96.5% 0.002 285.9);
+  --color-muted-foreground: oklch(53.6% 0.016 285.9);
+  --color-accent: oklch(96.5% 0.002 285.9);
+  --color-accent-foreground: oklch(22.6% 0.048 285.9);
+  --color-destructive: oklch(57.7% 0.243 27.325);
+  --color-destructive-foreground: oklch(97.8% 0.002 285.9);
+  --color-border: oklch(89.8% 0.005 285.9);
+  --color-input: oklch(89.8% 0.005 285.9);
+  --color-ring: oklch(9% 0.03 285.9);
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: oklch(100% 0 0);
+    --color-foreground: oklch(9% 0.03 285.9);
+    --color-card: oklch(100% 0 0);
+    --color-card-foreground: oklch(9% 0.03 285.9);
+    --color-popover: oklch(100% 0 0);
+    --color-popover-foreground: oklch(9% 0.03 285.9);
+    --color-primary: oklch(22.6% 0.048 285.9);
+    --color-primary-foreground: oklch(97.8% 0.002 285.9);
+    --color-secondary: oklch(96.5% 0.002 285.9);
+    --color-secondary-foreground: oklch(22.6% 0.048 285.9);
+    --color-muted: oklch(96.5% 0.002 285.9);
+    --color-muted-foreground: oklch(53.6% 0.016 285.9);
+    --color-accent: oklch(96.5% 0.002 285.9);
+    --color-accent-foreground: oklch(22.6% 0.048 285.9);
+    --color-destructive: oklch(57.7% 0.243 27.325);
+    --color-destructive-foreground: oklch(97.8% 0.002 285.9);
+    --color-border: oklch(89.8% 0.005 285.9);
+    --color-input: oklch(100% 0 0);
+    --color-ring: oklch(9% 0.03 285.9);
+  }
+}
+
+/* Force white background for text input fields only */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+textarea,
+select {
+  background-color: white !important;
+  color: #000000 !important;
+}
+
+/* Exclude checkbox and radio from background override */
+input[type="checkbox"],
+input[type="radio"] {
+  background-color: initial !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 55%, #eef2ff 100%);
+  color: #000000;
+}
+
+body {
+  background-color: transparent;
+  color: #000000;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Responsive Container */
+.app-container {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Ensure all elements use border-box */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  color: #000000;
+}
+
+/* Minimal button fixes - only for workflow specific buttons */
+button.workflow-submit-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+button.workflow-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+button.workflow-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.3);
+}
+
+/* Toggle Switch visibility enhancements */
+button[role="switch"] {
+  min-width: 64px !important;
+  height: 32px !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  border-radius: 9999px !important;
+  position: relative !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+button[role="switch"][data-state="checked"] {
+  background-color: #22c55e !important;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+button[role="switch"][data-state="unchecked"] {
+  background-color: #ef4444 !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Toggle Switch thumb */
+span[data-radix-switch-thumb] {
+  background-color: white !important;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.15) !important;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+}
+
+span[data-radix-switch-thumb][data-state="checked"] {
+  transform: translateX(32px) !important;
+}
+
+span[data-radix-switch-thumb][data-state="unchecked"] {
+  transform: translateX(4px) !important;
+}
+
+button[role="switch"]:hover[data-state="checked"] {
+  background-color: #16a34a !important;
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transform: scale(1.02);
+}
+
+button[role="switch"]:hover[data-state="unchecked"] {
+  background-color: #dc2626 !important;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transform: scale(1.02);
+}
+
+button[role="switch"]:active {
+  transform: scale(0.98) !important;
+}
+
+button[role="switch"]:focus-visible {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+/* Toggle switch text labels */
+button[role="switch"] span {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  letter-spacing: 0.5px !important;
+  user-select: none !important;
+  pointer-events: none !important;
+  transition: all 300ms ease !important;
+  opacity: 0.95 !important;
+}
+
+/* Ensure toggle switches are properly aligned in flex containers */
+div[style*="justify-content: space-between"] button[role="switch"],
+div[style*="justifyContent: space-between"] button[role="switch"] {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Fix toggle switch alignment in forms and settings pages */
+.card button[role="switch"],
+div[class*="card"] button[role="switch"],
+form button[role="switch"] {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* Ensure toggle parent wrapper doesn't expand */
+button[role="switch"] + *,
+* + button[role="switch"] {
+  flex-shrink: 1;
+}
+
+/* Slider visibility enhancements */
+span[role="slider"] {
+  cursor: pointer !important;
+}
+
+/* Slider track */
+span[data-radix-slider-track] {
+  background-color: #e2e8f0 !important;
+  height: 8px !important;
+}
+
+/* Slider range (filled portion) */
+span[data-radix-slider-range] {
+  background-color: #3b82f6 !important;
+}
+
+/* Slider thumb */
+span[data-radix-slider-thumb] {
+  width: 20px !important;
+  height: 20px !important;
+  background-color: white !important;
+  border: 2px solid #3b82f6 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+}
+
+span[data-radix-slider-thumb]:hover {
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3) !important;
+  transform: scale(1.1);
+}
+
+span[data-radix-slider-thumb]:focus-visible {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px;
+}

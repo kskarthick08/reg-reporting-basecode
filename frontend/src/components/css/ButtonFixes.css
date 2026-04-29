@@ -1,0 +1,54 @@
+/**
+ * Global Button Fixes
+ * Ensures buttons display properly across all pages and screen sizes
+ */
+
+/* Reset and base button styling */
+button,
+.button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  box-sizing: border-box;
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure buttons fit within their containers - minimal overrides */
+button:not([role="switch"]):not([role="slider"]):not([role="tab"]):not([role="menuitem"]):not([role="checkbox"]) {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific workflow button enhancements only */
+button.workflow-submit-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+
+button.workflow-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+button.workflow-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.25);
+}
+
+/* Only essential button fixes - let Button component handle styling */
+button:not([role="switch"]):not([role="slider"]):not([role="tab"]):not([role="menuitem"]):not([role="checkbox"]) {
+  box-sizing: border-box;
+}
+
+/* Responsive touch targets on mobile */
+@media (max-width: 640px) {
+  button:not([role="switch"]):not([role="slider"]):not([role="tab"]):not([role="menuitem"]):not([role="checkbox"]) {
+    min-height: 44px;
+  }
+}

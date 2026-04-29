@@ -1,0 +1,314 @@
+/* Global Responsive Styles */
+
+/* Ensure all containers are responsive */
+.page-wrapper,
+.dashboard-page-wrapper,
+.workflow-page-wrapper,
+.document-page-wrapper,
+.graph-page-wrapper,
+.validation-page-wrapper,
+.reports-page-wrapper,
+.activity-logs-wrapper,
+.user-management-wrapper,
+.llm-config-wrapper,
+.data-model-config-wrapper {
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media (max-width: 640px) {
+  .page-wrapper,
+  .dashboard-page-wrapper,
+  .workflow-page-wrapper,
+  .document-page-wrapper,
+  .graph-page-wrapper,
+  .validation-page-wrapper,
+  .reports-page-wrapper,
+  .activity-logs-wrapper,
+  .user-management-wrapper,
+  .llm-config-wrapper,
+  .data-model-config-wrapper {
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .page-wrapper,
+  .dashboard-page-wrapper,
+  .workflow-page-wrapper,
+  .document-page-wrapper,
+  .graph-page-wrapper,
+  .validation-page-wrapper,
+  .reports-page-wrapper,
+  .activity-logs-wrapper,
+  .user-management-wrapper,
+  .llm-config-wrapper,
+  .data-model-config-wrapper {
+    padding: 1rem;
+  }
+}
+
+/* Responsive Typography */
+h1, .main-title {
+  font-size: 2rem;
+}
+
+@media (max-width: 640px) {
+  h1, .main-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1, .main-title {
+    font-size: 1.75rem;
+  }
+}
+
+h2, .section-title {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  h2, .section-title {
+    font-size: 1.25rem;
+  }
+}
+
+h3, .subsection-title {
+  font-size: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  h3, .subsection-title {
+    font-size: 1.125rem;
+  }
+}
+
+/* Responsive Grids */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .grid-2-col {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid-2-col {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.grid-3-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .grid-3-col {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid-3-col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.grid-4-col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .grid-4-col {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .grid-4-col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Responsive Cards */
+.card,
+.metric-card,
+.info-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+@media (max-width: 640px) {
+  .card,
+  .metric-card,
+  .info-card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+}
+
+/* Responsive Tables */
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  min-width: 600px;
+}
+
+@media (max-width: 640px) {
+  table {
+    font-size: 0.875rem;
+  }
+  
+  th, td {
+    padding: 0.5rem !important;
+  }
+}
+
+/* Responsive Buttons */
+button, .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  button, .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Responsive Forms */
+input, textarea, select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive Dialogs/Modals */
+.dialog-panel,
+.modal-panel {
+  width: 90%;
+  max-width: 1200px;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+@media (max-width: 640px) {
+  .dialog-panel,
+  .modal-panel {
+    width: 95%;
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+}
+
+/* Responsive Flex Containers */
+.flex-container {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .flex-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/* Hide elements on mobile */
+.hide-mobile {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .show-mobile {
+    display: block;
+  }
+}
+
+/* Responsive spacing */
+.spacing-lg {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+  .spacing-lg {
+    margin-bottom: 1rem;
+  }
+}
+
+.spacing-md {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .spacing-md {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Responsive text alignment */
+@media (max-width: 640px) {
+  .text-center-mobile {
+    text-align: center;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive scrollbars */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Touch-friendly targets on mobile */
+@media (max-width: 640px) {
+  button,
+  a,
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
