@@ -95,6 +95,7 @@ def create_workflow(req: WorkflowCreateRequest, db: Session = Depends(get_db)):
         current_assignee=req.assigned_ba,
         started_by=req.actor,
         parent_workflow_id=req.parent_workflow_id,
+        is_active=True,
     )
     db.add(wf)
     db.commit()
@@ -175,6 +176,7 @@ def create_workflow_version(workflow_id: int, req: WorkflowCreateVersionRequest,
             if req.clone_unresolved_only
             else source.ba_gap_waivers_json
         ),
+        is_active=True,
     )
     db.add(new_workflow)
     db.commit()

@@ -516,13 +516,13 @@ def compat_documents(project_id: str | None = Query(None), db: Session = Depends
 
 @router.post("/documents/upload")
 async def compat_document_upload(
+    request: Request,
     project_id: str = Form(DEFAULT_PROJECT_ID),
     kind: str = Form("fca"),
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
     from app.api.routes.artifact_routes import upload_file
-    request = Request({"type": "http", "headers": []})
     result = await upload_file(request=request, project_id=project_id, kind=kind, file=file, db=db)
     row = db.query(Artifact).filter(Artifact.id == result["artifact_id"]).first()
     return _artifact_to_document(row) if row else result
@@ -576,6 +576,7 @@ def compat_document_stats(project_id: str | None = Query(None), db: Session = De
 
 @router.post("/model-library/upload")
 async def compat_model_upload(
+    request: Request,
     file: UploadFile = File(...),
     name: str = Form(""),
     version: str = Form("1.0"),
@@ -584,7 +585,6 @@ async def compat_model_upload(
     db: Session = Depends(get_db),
 ):
     from app.api.routes.artifact_routes import upload_file
-    request = Request({"type": "http", "headers": []})
     result = await upload_file(request=request, project_id=project_id, kind="data_model", file=file, db=db)
     row = db.query(Artifact).filter(Artifact.id == result["artifact_id"]).first()
     return _artifact_to_model(row) if row else result
